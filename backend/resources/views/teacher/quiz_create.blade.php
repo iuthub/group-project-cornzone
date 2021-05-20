@@ -22,19 +22,19 @@
             </div>
         </div>
 
-        <form id="create-quiz-form">
+        <form id="create-quiz-form" method="post" action="{{ route('quizCreate') }}">
             <div class="pt-3">
                 <h3 class="sub-title mb-2">General quiz info</h3>
 
                 <div class="row">
                     <div class="col-4">
                         <h4 class="input-title mb-1">Subject</h4>
+                        <input name="subject" type="text" class="app-input" placeholder="Subject" readonly value="Physics">
+                    </div>
 
-                        <label class="app-select-label">
-                            <select name="subject" class="app-select-option">
-                                <option value="Math" selected>Math</option>
-                            </select>
-                        </label>
+                    <div class="col-4">
+                        <h4 class="input-title mb-1">Title</h4>
+                        <input name="title" type="text" class="app-input" placeholder="Title" required>
                     </div>
 
                     <div class="col-4">
