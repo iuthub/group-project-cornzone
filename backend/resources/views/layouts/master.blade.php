@@ -13,13 +13,13 @@
     <link rel="stylesheet" href="{{ URL::to('css/styles.css') }}">
 </head>
 <body>
-    @yield('content')
-    <script src="{{ URL::to('js/app.js') }}">
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-    </script>
+@yield('content')
+<script src="{{ URL::to('js/app.js') }}">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 </body>
 </html>
