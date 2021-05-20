@@ -10,6 +10,8 @@ p {
 a,
 a:hover {
     text-decoration: none;
+    color: #fff;
+    cursor: pointer;
 }
 
 [class*="-button"], .noselect {
