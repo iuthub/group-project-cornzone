@@ -22,14 +22,16 @@
             </div>
         </div>
 
-        <form id="create-quiz-form" method="post" action="{{ route('quizCreate') }}">
+        <form id="create-quiz-form" method="post" action="{{ route("quizCreate") }}">
+            @csrf
             <div class="pt-3">
                 <h3 class="sub-title mb-2">General quiz info</h3>
 
                 <div class="row">
                     <div class="col-4">
                         <h4 class="input-title mb-1">Subject</h4>
-                        <input name="subject" type="text" class="app-input" placeholder="Subject" readonly value="Physics">
+                        <input name="subject" type="text" class="app-input" placeholder="Subject" readonly
+                               value="Physics">
                     </div>
 
                     <div class="col-4">
@@ -79,7 +81,8 @@
                         <h4 class="input-title mb-1">Actions</h4>
 
                         <div class="row ml-1">
-                            <button type="button" class="app-raised-button ripple mr-2" id="add-question">Add question</button>
+                            <button type="button" class="app-raised-button ripple mr-2" id="add-question">Add question
+                            </button>
                             <button type="submit" class="app-raised-button ripple green" id="create-quiz">Done</button>
                         </div>
                     </div>
