@@ -1,0 +1,54 @@
+.app-input {
+    padding: 0.4rem 0.9rem;
+    width: 100%;
+    color: $black;
+    background-color: $grey;
+    border-radius: $borderRadius;
+    border: none;
+    outline: none;
+}
+
+.app-input::placeholder {
+    color: $placeholderColor;
+}
+
+.app-select-option {
+    color: $black;
+    width: 100%;
+    position: relative;
+    background-color: #f5f5f5;
+    outline: none;
+    border: none;
+    padding: 8px 38px 8px 8px;
+    border-radius: $borderRadius;
+    cursor: pointer;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: "";
+}
+
+.app-select-label {
+    width: 100%;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.app-select-label::after {
+    font: normal normal normal 14px/1 FontAwesome;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    content: "\F078";
+    color: #00acb3;
+
+    font-size: 0.9rem;
+    right: 12px;
+    top: 12px;
+    padding: 0 0 2px;
+    position: absolute;
+    pointer-events: none;
+}
