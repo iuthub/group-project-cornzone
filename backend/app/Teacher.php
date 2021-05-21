@@ -5,7 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model
-{
+{   
+    protected $guard = 'teacher_web';
+
     protected $fillable = [
         'first_name', 'last_name', 'email', 'password', 'subject_id'
     ];
