@@ -51,4 +51,9 @@ Route::group(['prefix' => 'student'], function () {
 
     Route::get('/sign-up', 'AuthController@getSignUpStudent')->name('signUpStudent');
     Route::post('/sign-up', 'AuthController@postSignUpStudent');
+
 });
+
+
+
+
