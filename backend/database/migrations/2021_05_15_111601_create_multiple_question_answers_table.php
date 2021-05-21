@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMultipleQuestionOptionSetsTable extends Migration
+class CreateMultipleQuestionAnswersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateMultipleQuestionOptionSetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('multiple_question_option_sets', function (Blueprint $table) {
+        Schema::create('multiple_question_answers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('option1');
-            $table->string('option2');
-            $table->string('option3');
-            $table->string('option4');
+            $table->unsignedBigInteger('super_question_id');
+            $table->foreign('super_question_id')->references('id')->on('super_questions');
+            $table->string('answer');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateMultipleQuestionOptionSetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('multiple_question_option_sets');
+        Schema::dropIfExists('multiple_question_answers');
     }
 }
