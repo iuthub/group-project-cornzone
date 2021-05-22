@@ -14677,3 +14677,27 @@ header .log-out {
   border-bottom-right-radius: 10px;
 }
 
+.student-quizzes .quiz {
+    background-color: #efeff0;
+    border-radius: 7px;
+    position: relative;
+    height: 100px;
+    padding: 15px 35px;
+}
+
+.student-quizzes .quiz-name {
+    color: #a2a2a2;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.student-quizzes .quiz .body .section {
+    color: #fff;
+    padding: 4px 10px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #00acb3;
+    border-radius: 7px 0 7px 0;
+    font-weight: 500;
+}

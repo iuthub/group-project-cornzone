@@ -17,7 +17,7 @@
 
     <div class="container mt-3 teacher-quizzes">
         <div class="row page-name">
-            <h2>All Quizes</h2>
+            <h2>All Quizzes</h2>
         </div>
 
 {{--        <div class="row spinner justify-content-center align-items-center" v-if="spinner">--}}

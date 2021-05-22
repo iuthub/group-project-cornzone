@@ -495,3 +495,33 @@
         border-bottom-right-radius: 10px;
     }
 }
+
+.student-quizzes {
+    .body {
+        background-color: #efeff0;
+        border-radius: $borderRadius;
+        position: relative;
+        height: 100px;
+        padding: 15px 35px;
+
+        .top {
+            .quiz-name {
+                color: $greyDarker;
+                font-weight: bold;
+                font-size: 1.4rem;
+            }
+        }
+
+        .section {
+            color: #fff;
+            padding: 4px 10px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: $green;
+            border-radius: $borderRadius 0 $borderRadius 0;
+            font-weight: 500;
+        }
+    }
+}
+
