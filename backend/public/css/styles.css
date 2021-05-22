@@ -14185,6 +14185,12 @@ header .log-out {
   color: #b5b6b9;
 }
 
+.app-toast {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+}
+
 .question-title {
   position: relative;
   border: 1px solid #00acb3;
@@ -14335,6 +14341,20 @@ header .log-out {
   position: relative;
   min-height: 60px;
   border-radius: 7px;
+}
+
+.answers .answer input {
+  min-height: 60px;
+  background-color: #f8f8f9;
+}
+
+.answers .answer input.highlight {
+  color: white;
+  background: #8574a1;
+}
+
+.answers .answer.pointer {
+  cursor: pointer;
 }
 
 .answers .answer.correct {

@@ -50,6 +50,12 @@ header {
     color: $placeholderColor;
 }
 
+.app-toast {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+}
+
 .question-title {
     position: relative;
     border: 1px solid $green;
@@ -186,6 +192,20 @@ header {
         position: relative;
         min-height: 60px;
         border-radius: $borderRadius;
+
+        input {
+            min-height: 60px;
+            background-color: #f8f8f9;
+        }
+
+        input.highlight {
+            color: white;
+            background: $violet;
+        }
+    }
+
+    .answer.pointer {
+        cursor: pointer;
     }
 
     .answer.correct {
