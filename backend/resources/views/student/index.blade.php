@@ -68,39 +68,31 @@ use App\Http\Controllers\StudentController;
                         </div>
                     </a>
                 </div>
-                <?php
-                }?>
+                    <?php
+                    }?>
             </div>
         </div>
 
         <div class="container mt-5 student-quizzes">
             <h2 class="page-name">Completed quizzes</h2>
-
             <div class="row mt-3">
+                <?php foreach ($completedQuizzes as $completedQuiz){
+                ?>
                 <div class="col-lg-6">
-                    <a href="student/quizzes/completed/1">
+                    <a href="student/quizzes/active/<?=$completedQuiz->id?>">
                         <div class="quiz">
                             <div class="date d-flex align-items-center"></div>
                             <div class="body mt-3 d-flex flex-column align-items-center">
-                                <div class="quiz-name ml-2">Introduction to IT</div>
-                                <div class="bottom-info">27.02.2021</div>
+                                <div class="quiz-name ml-2"><?=$completedQuiz->title?></div>
+                                <div class="bottom-info"><?=$completedQuiz->created_at?></div>
                             </div>
                         </div>
                     </a>
                 </div>
-
-                <div class="col-lg-6">
-                    <a href="student/quizzes/completed/1">
-                        <div class="quiz">
-                            <div class="date d-flex align-items-center"></div>
-                            <div class="body mt-3 d-flex flex-column align-items-center">
-                                <div class="quiz-name ml-2">Introduction to IT</div>
-                                <div class="bottom-info">27.02.2021</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <?php
+                }?>
             </div>
+
         </div>
 
 
