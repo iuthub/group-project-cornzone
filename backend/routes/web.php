@@ -48,6 +48,16 @@ Route::group(['prefix' => 'student'], function () {
     })->name('studentIndex');
     Route::get('/sign-in', 'AuthController@getSignInStudent')->name('signInStudent');
     Route::post('/sign-in', 'AuthController@postSignInStudent');
+    
+    Route::get('/all-quizzes', function () {
+        return view('student.all-quizzes');
+    });
+    Route::get('/true-false', function () {
+        return view('student.true-false');
+    }); 
+    Route::get('/fill', function () {
+        return view('student.fill');
+    }); 
 
     Route::get('/sign-up', 'AuthController@getSignUpStudent')->name('signUpStudent');
     Route::post('/sign-up', 'AuthController@postSignUpStudent');
