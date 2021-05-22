@@ -14432,6 +14432,31 @@ header .log-out {
   font-weight: 500;
 }
 
+.auth-body .action-btn {
+  color: #7b91b5;
+  padding-bottom: 5px;
+}
+
+.auth-body .action-btn:hover {
+  color: inherit;
+}
+
+.auth-body .action-btn span {
+  position: relative;
+}
+
+.auth-body .action-btn span::before {
+  position: absolute;
+  bottom: -5px;
+  width: 100%;
+  height: 1px;
+  right: 0;
+  left: 0;
+  content: "";
+  display: block;
+  border-bottom: 1px dashed;
+}
+
 .auth-body .background {
   background-image: url(/images/choose-role.jpg?356d2c346578b2a3a705ea0d83d7a400);
   background-position: center center;
