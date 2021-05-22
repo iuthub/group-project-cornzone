@@ -29,12 +29,19 @@
                 <div class="row">
                     <div class="col-4">
                         <h4 class="input-title mb-1">Subject</h4>
+                        <input
+                            name="subject"
+                            type="text"
+                            class="app-input"
+                            placeholder="Subject"
+                            readonly
+                            value="{{$subjectTitle}}"
+                        >
+                    </div>
 
-                        <label class="app-select-label">
-                            <select name="subject" class="app-select-option">
-                                <option value="Math" selected>Math</option>
-                            </select>
-                        </label>
+                    <div class="col-4">
+                        <h4 class="input-title mb-1">Title</h4>
+                        <input name="title" type="text" class="app-input" placeholder="Title" required>
                     </div>
 
                     <div class="col-4">
@@ -61,7 +68,7 @@
                             <select class="app-select-option" id="type-selector">
                                 <option value="null" disabled selected>Choose the question type</option>
                                 <?php
-                                foreach (\App\QuestionType::all() as $type){
+                                foreach ($questionTypes as $type){
                                 ?>
                                 <option value="<?= $type->id ?>"> <?= $type->title ?></option>
                                 <?php

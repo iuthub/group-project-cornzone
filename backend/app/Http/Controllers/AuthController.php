@@ -99,7 +99,10 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('teacher_web')->attempt($credentials)) {
-            return redirect()->route('teacherIndex')->with('info', 'You have registered successfully!');
+            $teacher = Teacher::where("email", $request->input('email'))->first();
+            $request->session()->put('teacherId', $teacher->id);
+
+            return redirect()->route('teacherIndex')->with('info', 'You have signed in successfully!');
         }
 
         return back()->withErrors([
