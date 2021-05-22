@@ -41,3 +41,151 @@ header {
         font-weight: 600;
     }
 }
+
+.page-name {
+    color: $black;
+}
+
+.question-title {
+    position: relative;
+    border: 1px solid $green;
+    text-align: center;
+    vertical-align: middle;
+    min-height: 200px;
+
+    .question-input {
+        text-align: center;
+        padding: 0.4rem 0.9rem;
+        color: $black;
+        border-radius: $borderRadius;
+        border: none;
+        outline: none;
+        font-size: 20px;
+        width: 80%;
+        min-height: 60px;
+        overflow-y: hidden;
+    }
+
+    .question-input::placeholder {
+        color: $greyLight;
+    }
+
+    .question-number {
+        position: absolute;
+        left: -5px;
+        top: -5px;
+        padding: 2px 12px;
+        font-size: 22px;
+        background-color: $blue;
+        color: #fff;
+        outline: 8px solid #fff;
+        border-radius: 3px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .attach {
+        position: absolute;
+        right: -1px;
+        bottom: -1px;
+        padding: 4px 10px;
+        font-size: 22px;
+        background-color: $violet;
+        border-radius: $borderRadius 0 0 0;
+        color: #fff;
+    }
+}
+
+.question-answer-variant {
+    background-color: #f8f8f9;
+    position: relative;
+    min-height: 60px;
+    border-radius: $borderRadius;
+
+    .radio-btn {
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 0 10px;
+        background-color: $greyLight;
+        color: #fff;
+        height: 100%;
+        border-radius: $borderRadius 0 0 $borderRadius;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .radio-btn.checked {
+        background-color: $green;
+    }
+
+    .radio-btn:hover {
+        background-color: #00adb38f;
+    }
+
+    .radio-btn:focus,
+    .radio-btn:active {
+        background-color: $green;
+    }
+
+    .answer-input {
+        margin-left: 30px;
+        text-align: center;
+        padding: 0.4rem 0.9rem;
+        color: $black;
+        border-radius: $borderRadius;
+        border: none;
+        outline: none;
+        font-size: 20px;
+        width: 100%;
+        height: 100%;
+        min-height: 60px;
+        background-color: #f8f8f9;
+        overflow-y: hidden;
+    }
+
+    .answer-input::placeholder {
+        color: $greyLight;
+    }
+
+    .attach-btn {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 4px 8px;
+        background-color: $violet;
+        border-radius: 0 0 $borderRadius 0;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+
+        .icon-attachment-clip {
+            font-size: 1.2em;
+        }
+    }
+
+    button {
+        width: 3rem;
+    }
+}
+
+.answers {
+    .answer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: #a2a2a2;
+        font-weight: 500;
+        background-color: #f8f8f9;
+        position: relative;
+        min-height: 60px;
+        border-radius: $borderRadius;
+    }
+
+    .answer.correct {
+        color: white;
+        background: $green;
+    }
+}
