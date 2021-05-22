@@ -1,0 +1,59 @@
+.auth-body {
+    .background {
+        //background-image: url("../images/auth_bg.png");
+        //background-position: center 56vh;
+        //background-repeat: no-repeat;
+        //height: 100vh;
+
+        background-image: url("../../images/choose-role.jpg");
+        background-position: center center;
+        background-size: cover;
+        height: 100vh;
+    }
+
+    .logo {
+        width: 4.5rem;
+        height: 4.5rem;
+        border-radius: 50%;
+        background-image: url("../../images/logo_180.png");
+        background-position: center center;
+        background-size: 100% 100%;
+        margin: 0 auto;
+    }
+
+    .logo-title h2 {
+        color: $black;
+        font-size: 2rem;
+        font-weight: 900;
+        text-align: center;
+    }
+
+    .sub-title h3 {
+        color: #939393;
+        font-weight: 500;
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .app-input,
+    .app-select-option {
+        background: #fff;
+    }
+
+    .sub-title.errorSubtitle h3 {
+        color: $red;
+        font-weight: 400;
+    }
+
+    .login-submit {
+        button {
+            background-color: $blue;
+            width: 100%;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 0.4rem 0.9rem;
+            border-radius: $borderRadius;
+        }
+    }
+}
