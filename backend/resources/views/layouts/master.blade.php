@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="app-toast">
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast fade hide" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <img src="{{ URL::to('favicon.ico') }}" class="rounded mr-2" alt="...">
                 <strong class="mr-auto">Quizify</strong>
