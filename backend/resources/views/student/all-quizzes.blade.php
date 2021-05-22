@@ -12,7 +12,7 @@ All quizzes
 @endsection
 
 @section('content')
-@include('partials.teacher_header')
+@include('partials.header')
 <div>
     <div class="all-quizzes mt-5 container">
         <h2 class="text-center mb-5 text-secondary-v2">All quizzes</h2>

@@ -502,15 +502,13 @@
         border-radius: $borderRadius;
         position: relative;
         height: 100px;
-        padding: 15px 35px;
+        padding: 30px 35px;
 
-        .top {
             .quiz-name {
                 color: $greyDarker;
                 font-weight: bold;
                 font-size: 1.4rem;
             }
-        }
 
         .section {
             color: #fff;
