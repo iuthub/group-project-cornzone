@@ -19,10 +19,9 @@ class AuthController extends Controller
         $this->validate($request, [
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required|unique:students|email|max:255',
+            'email' => 'required|unique:students|email|regex:/(.+)@(.+)\.(.+)/i|max:255',
             'password' => 'required|min:6',
         ]);
-
         $student = Student::create([
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),

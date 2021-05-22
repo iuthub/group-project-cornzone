@@ -20,7 +20,15 @@
                     <div class="sub-title mt-3">
                         <h3>Login to continue</h3>
                     </div>
-
+                    
+                    @if ($errors->any())
+                    <div class="alert alert-danger my-3" role="alert">
+                        @foreach ($errors->all() as $error)
+                            {{$error}}
+                        @endforeach
+                        </div>
+                    @endif
+                    
                     {{--                <div class="sub-title" :class="{ errorSubtitle: isError }">--}}
                     {{--                    <h3>{{ subTitle }}</h3>--}}
                     {{--                </div>--}}
@@ -28,12 +36,13 @@
                     <div class="mt-3">
                         <input name="email" id="email" class="app-input" type="text" placeholder="Email" required>
                     </div>
+                    
+                    
 
                     <div class="mt-3">
                         <input name="password" id="password" class="app-input" type="password" placeholder="Password"
                                required>
                     </div>
-
                     <div class="mt-3">
                         <button type="submit" class="app-raised-button w-100 ripple">Login</button>
                     </div>
