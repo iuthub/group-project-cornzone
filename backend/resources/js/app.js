@@ -12,15 +12,16 @@ const createQuizPage = $("#create-quiz-page");
 const teacherIndexPage = $("#teacher-quizzes");
 const takeQuizPage = $("#take-quiz");
 
-function showToast(message, options) {
+function showToast(message) {
     const toast = $(".toast");
 
     $(toast.children(".toast-body")[0]).text(message);
-    toast.toast(options);
     toast.toast("show");
 }
 
 $(document).ready(function () {
+    $(".toast").toast({delay: 4000, autohide: true});
+
     if (createQuizPage != null) {
         onCreateQuizInit();
     }
@@ -34,7 +35,7 @@ $(document).ready(function () {
 
         submitButton.on("click", function (e) {
             if (Object.keys(questionAnswers).length !== questionElements.length) {
-                showToast("You haven't answered all the questions", {delay: 4000, autohide: true})
+                showToast("You haven't answered all the questions")
             } else {
                 answersInput.val(JSON.stringify(questionAnswers));
             }
@@ -77,7 +78,7 @@ $(document).ready(function () {
             $(button).on("click", function (e) {
                 e.preventDefault();
 
-                linkInput.val(`https://quizzes/${$(button).attr("quizId")}`)
+                linkInput.val(`https://quizify.uz/quizzes/${$(button).attr("quizId")}`)
 
                 $('#copy-link').modal({ show: true });
             });
