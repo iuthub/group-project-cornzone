@@ -23,18 +23,23 @@ class AuthController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        Student::create([
+        $student = Student::create([
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
         ]);
 
+        $request->session()->put('studentId', $student->id);
+
         return redirect()->route('studentIndex')->with('info', 'You are registered successfully!');
     }
 
-    public function getSignInStudent()
+    public function getSignInStudent(Request $request)
     {
+        $request->session()->remove('studentId');
+        $request->session()->remove('teacherId');
+
         return view('student.sign_in');
     }
 
@@ -48,6 +53,9 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('student_web')->attempt($credentials)) {
+            $student = Student::where("email", $request->input('email'))->first();
+            $request->session()->put('studentId', $student->id);
+
             return redirect()->route('studentIndex');
         }
 
@@ -71,7 +79,7 @@ class AuthController extends Controller
             'subject_id' => 'required',
         ]);
 
-        Teacher::create([
+        $teacher = Teacher::create([
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
             'email' => $request->input('email'),
@@ -79,13 +87,16 @@ class AuthController extends Controller
             'subject_id' => $request->input('subject_id'),
         ]);
 
-
+        $request->session()->put('teacherId', $teacher->id);
 
         return redirect()->route('teacherIndex')->with('info', 'You have registered successfully!');
     }
 
-    public function getSignInTeacher()
+    public function getSignInTeacher(Request $request)
     {
+        $request->session()->remove('studentId');
+        $request->session()->remove('teacherId');
+
         return view('teacher.sign_in');
     }
 
