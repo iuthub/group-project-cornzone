@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    @include('partials.teacher_header')
+    @include('partials.header')
 
     <div id="read-quiz-page" class="container mt-3 mb-5">
         <div class="row page-name">

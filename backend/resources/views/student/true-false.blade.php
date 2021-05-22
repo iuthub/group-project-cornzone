@@ -12,7 +12,7 @@ True/False Questions
 @endsection
 
 @section('content')
-@include('partials.teacher_header')
+@include('partials.header')
 <div>
     <div class="container">
         <div class="text-center my-5">
