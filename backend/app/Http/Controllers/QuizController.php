@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
-    public static function getQuestionsNumberByQuizId($id){
+    public static function getQuestionsNumberByQuizId($id)
+    {
         $questions = SuperQuestion::where("quiz_id", $id)->get();
         return sizeof($questions);
     }
@@ -35,7 +36,8 @@ class QuizController extends Controller
         ]);
     }
 
-    public function postCreateQuiz(Request $request) {
+    public function postCreateQuiz(Request $request)
+    {
         $teacher = Teacher::find($request->session()->get("teacherId"));
 
         $quiz = Quiz::create(array(
@@ -60,14 +62,12 @@ class QuizController extends Controller
                 $answers = '';
 
                 foreach ($value["answers"] as $answerKey => $answerValue) {
-                    print $answerValue["answerText"] . "     ";
-                    print $answerValue["isRightAnswer"] . "<br>";
                     if ($answerValue["isRightAnswer"] == true) {
                         $right_answer = $answerValue["answerText"];
                     }
                 }
 
-                $mq_answer =  MultipleQuestionAnswer::create(array(
+                $mq_answer = MultipleQuestionAnswer::create(array(
                     'super_question_id' => $superQuestion->id,
                     'answer' => $right_answer,
                 ));
@@ -78,27 +78,24 @@ class QuizController extends Controller
                         'text' => $answerValue["answerText"],
                     ));
                 }
-            }
-
-             else if (strtolower($value["type"]) == '2') {
-                 TrueFalseQuestionAnswer::create(array(
+            } else if (strtolower($value["type"]) == '2') {
+                TrueFalseQuestionAnswer::create(array(
                     'answer' => $value["answers"][0]["isRightAnswer"],
                     'super_question_id' => $superQuestion->id,
                 ));
-            }
-
-            else if (strtolower($value["type"]) == '1') {
+            } else if (strtolower($value["type"]) == '1') {
                 SimpleQuestionAnswer::create(array(
-                    'answer' => $answerValue["answerText"],
+                    'answer' => $value["answers"][0]["answerText"],
                     'super_question_id' => $superQuestion->id,
                 ));
             }
         }
 
-        return view('teacher.index');
+        return redirect(route("teacherIndex"));
     }
 
-    public function acceptQuiz(Request $request) {
+    public function acceptQuiz(Request $request)
+    {
         $quizId = substr($request->input('quizLink'), -1);
 
         DB::table('student_quiz')->insertGetId([
