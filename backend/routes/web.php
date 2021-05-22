@@ -23,16 +23,7 @@ Route::get('/login', function () {
 Route::post('/', 'CheckRoleController@postRoleType');
 
 Route::group(['prefix' => 'teacher'], function () {
-    Route::get('', function () {
-
-        return view('teacher.index', [
-            "quizzes" =>
-                Quiz::where("teacher_id", session()->get("teacherId"))
-                    ->orderBy('created_at')
-                    ->get()
-                    ->toArray()
-        ]);
-    })->name('teacherIndex');
+    Route::get('', 'TeacherController@getTeacherIndex')->name('teacherIndex');
 
     Route::get('/sign-in', 'AuthController@getSignInTeacher')->name('signInTeacher');
     Route::post('/sign-in', 'AuthController@postSignInTeacher');
