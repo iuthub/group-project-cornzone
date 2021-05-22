@@ -5,8 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="main">
-
+    <div id="main">
         <div class="main-header">
             <div class="container">
                 <div class="main-header_wrapper d-flex align-items-center justify-content-between">
@@ -35,7 +34,7 @@
                         </div>
 
 
-                        
+
                     </div>
 
                     <div class="main-content_img">
@@ -44,6 +43,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection

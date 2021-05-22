@@ -87,7 +87,7 @@ const createNewQuestion = (index, type) => {
 
     $(parent).append(questionTitle);
 
-    if (type === "text") {
+    if (type === "1") {
         $(parent).append(createAnswerVariant(new CreateAnswerOptions(
             true,
             false,
@@ -97,7 +97,7 @@ const createNewQuestion = (index, type) => {
         )));
     }
 
-    if (type === "true/false") {
+    if (type === "2") {
         $(parent).append(createAnswerVariant(new CreateAnswerOptions(
             true,
             false,
@@ -115,7 +115,7 @@ const createNewQuestion = (index, type) => {
         )));
     }
 
-    if (type === "multiple") {
+    if (type === "3") {
         $(parent).append(createAddButton(parent,
             new CreateAnswerOptions(
                 false,

@@ -39,6 +39,10 @@ Route::group(['prefix' => 'teacher'], function () {
     Route::get('/quiz/1/results', function () {
         return view('teacher.list_of_students');
     });
+
+    Route::get('/quiz/1/results/1', function () {
+        return view('teacher.students_answer');
+    });
 });
 
 Route::group(['prefix' => 'student'], function () {
@@ -52,8 +56,8 @@ Route::group(['prefix' => 'student'], function () {
     Route::get('/all-quizzes', function () {
         return view('student.all-quizzes');
     });
-    Route::get('/true-false', function () {
-        return view('student.true-false');
+    Route::get('/quizzes/completed/1', function () {
+        return view('student.completed_quiz');
     });
     Route::get('/fill', function () {
         return view('student.fill');
