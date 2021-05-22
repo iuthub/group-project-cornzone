@@ -22,7 +22,8 @@
             </div>
         </div>
 
-        <form id="create-quiz-form">
+        <form id="create-quiz-form" method="POST" action="{{ route("quizCreate") }}">
+            @csrf
             <div class="pt-3">
                 <h3 class="sub-title mb-2">General quiz info</h3>
 

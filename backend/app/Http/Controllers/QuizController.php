@@ -28,17 +28,19 @@ class QuizController extends Controller
     }
 
     public function postCreateQuiz(Request $request)
-    {
-
+    {   
+        
+        $teacher = Teacher::find($request->session()->get("teacherId"));
 
         //todo get subject id teacher id from session
-        // $quiz = Quiz::create(array(
-        //     'title' => $request->input('title'),
-        //     'subject_id' => '1',
-        //     'teacher_id' => '1',
-        //     'duration' => $request->input('duration'),
-        // ));
-
+        
+        $quiz = Quiz::create(array(
+            'title' => $request->input('title'),
+            'subject_id' => $teacher->subject_id,
+            'teacher_id' => $teacher->id,
+            'duration' => $request->input('duration'),
+        ));
+        dd($quiz);
         // $data = request()->validate([
         //     'title' => 'required',
         //     'duration' => 'required',
@@ -47,7 +49,7 @@ class QuizController extends Controller
         // $data = auth()->teacher()->quizzes()->create($data);
         // dd($data);
         // dd(Auth::guard('teacher_web')->user()->id);
-        dd($request->session()->get("teacherId"));
+        // dd($request->session()->get("teacherId"));
 //        dd(auth()->guard('teacher_web'));
         // dd(Auth::user()->getId());
         // dd(Auth::teacher());

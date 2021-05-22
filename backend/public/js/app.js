@@ -37464,16 +37464,16 @@ var createNewQuestion = function createNewQuestion(index, type) {
   $(questionTitle).append("\n       <textarea\n        rows=\"2\"\n        class=\"question-input\"\n        placeholder=\"Type a question...\"\n       ></textarea>\n    ");
   $(parent).append(questionTitle);
 
-  if (type === "text") {
+  if (type === "1") {
     $(parent).append(createAnswerVariant(new CreateAnswerOptions(true, false, "", false, false)));
   }
 
-  if (type === "true/false") {
+  if (type === "2") {
     $(parent).append(createAnswerVariant(new CreateAnswerOptions(true, false, "True", true, false)));
     $(parent).append(createAnswerVariant(new CreateAnswerOptions(false, true, "False", true, false)));
   }
 
-  if (type === "multiple") {
+  if (type === "3") {
     $(parent).append(createAddButton(parent, new CreateAnswerOptions(false, true, "", false, true)));
     $(parent).append(createAnswerVariant(new CreateAnswerOptions(true, false, "", false, false)));
   }
@@ -37505,8 +37505,8 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Development\Projects\Education\group-project-cornzone\backend\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Development\Projects\Education\group-project-cornzone\backend\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\inha\IP\group-project-cornzone\backend\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\inha\IP\group-project-cornzone\backend\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
