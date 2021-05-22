@@ -14165,6 +14165,34 @@ header .log-out {
   font-weight: 600;
 }
 
+.bg-danger-v2 {
+  background-color: #ffe7e9;
+}
+
+.bg-success-v2 {
+  background-color: #90e1d8;
+}
+
+.bg-violet-v2 {
+  background-color: #8574a1;
+}
+
+.text-violet {
+  color: #8574a1;
+}
+
+.text-secondary-v2 {
+  color: #6d6d6d;
+}
+
+.bg-blue-v2 {
+  background-color: #5d759b;
+}
+
+.bg-green-v2 {
+  background-color: #00acb3;
+}
+
 .page-name {
   color: #6d6d6d;
 }
@@ -14496,7 +14524,7 @@ header .log-out {
 }
 
 .action-btn {
-  color: #7B91B5;
+  color: #7b91b5;
   padding-bottom: 5px;
 }
 
@@ -14550,6 +14578,33 @@ header .log-out {
   font-weight: 500;
 }
 
+.quiz-item {
+  border-radius: 20px;
+  display: flex;
+}
+
+.quiz-item_pos {
+  background-color: #5d759b;
+  padding: 14px 28px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.quiz-item_pos-wrapper {
+  position: relative;
+  width: 63px;
+  height: 100%;
+}
+
+.quiz-item_content {
+  padding: 35px 60px;
+  width: calc(100% - 63px);
+  margin-left: auto;
+}
+
 #list-of-students .page-name {
   text-align: center;
 }
@@ -14577,7 +14632,7 @@ header .log-out {
 }
 
 #list-of-students .content-table thead tr {
-  color: #00ACB3;
+  color: #00acb3;
   text-align: left;
   font-weight: bold;
   padding-bottom: 10px;
@@ -14585,11 +14640,11 @@ header .log-out {
 
 #list-of-students .content-table tbody td {
   padding: 12px 15px;
-  background: #F4F4F4;
+  background: #f4f4f4;
 }
 
 #list-of-students .content-table tbody tr {
-  border-bottom: 10px solid #FFFFFF;
+  border-bottom: 10px solid #ffffff;
   padding-bottom: 15px;
 }
 
@@ -14600,7 +14655,7 @@ header .log-out {
 }
 
 #list-of-students .app-raised-button:hover {
-  background-color: #6B5989;
+  background-color: #6b5989;
 }
 
 #list-of-students .button__icon {
