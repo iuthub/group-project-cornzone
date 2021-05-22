@@ -15,13 +15,13 @@ class CreateSuperQuestionsTable extends Migration
     {
         Schema::create('super_questions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('question');
             $table->unsignedBigInteger('quiz_id');
             $table->foreign('quiz_id')->references('id')->on('quizzes');
+            $table->string('question');
             $table->unsignedBigInteger('question_type_id');
             $table->foreign('question_type_id')->references('id')->on('question_types');
-            $table->timestamps();
             $table->unsignedInteger('points');
+            $table->timestamps();
         });
     }
 

@@ -33,7 +33,7 @@ Route::group(['prefix' => 'teacher'], function () {
     Route::post('/quiz/create', 'QuizController@postCreateQuiz');
 
     Route::get('/quiz/1', function() {
-        return view('teacher.quiz');
+        return dd(auth()->guard('teacher_web'));;
     });
 
     Route::get('/quiz/1/results', function () {

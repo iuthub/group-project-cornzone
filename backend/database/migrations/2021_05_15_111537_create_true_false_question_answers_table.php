@@ -17,7 +17,7 @@ class CreateTrueFalseQuestionAnswersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('super_question_id');
             $table->foreign('super_question_id')->references('id')->on('super_questions');
-            $table->string('answer');
+            $table->boolean('answer');
             $table->timestamps();
         });
     }
