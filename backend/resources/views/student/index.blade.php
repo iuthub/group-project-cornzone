@@ -59,105 +59,55 @@
         .show {display: block;}
     </style> --}}
 
+
     <div class="container mt-3 student-quizzes">
-            <div class="row page-name">
-                <h2>Active quizzes</h2>
-            </div>
-
-            {{-- <a href="/student"> </a> --}}
-            <div class="row quiz mt-3">
-                <div class="date d-flex align-items-center">
-                    <div class="col-auto">
-                        <p>May 7</p>
-                    </div>
-
-                    <div class="col line"></div>
-                </div>
-
-                <div class="body mt-3 d-flex flex-column align-items-center">
-                    <div class="blue-decor"></div>
-
-                    <div class="col top d-flex align-items-center">
-                        <div class="quiz-number mr-2">Quiz 1</div>
-                        <div class="line"></div>
+        <h2>Active quizzes</h2>
+        <div class="row page-name mt-3">
+            <div class="col-lg-6">
+                <div class="quiz">
+                    <div class="date d-flex align-items-center"></div>
+                    <div class="body mt-3 d-flex flex-column align-items-center">
                         <div class="quiz-name ml-2">Introduction to IT</div>
+                        <div class="section">27.02.2021</div>
                     </div>
-
-                    <div class="col bottom">
-                        Questions: 10, Time limit: 15m</div>
-
-                    <div class="section">SEC 001</div>
                 </div>
             </div>
-    </div>
-
-
-    <div class="container mt-3 student-quizzes">
-        <div class="row page-name">
-            <h2>Completed quizzes</h2>
+            <div class="col-lg-6">
+                <div class="quiz">
+                    <div class="date d-flex align-items-center"></div>
+                    <div class="body mt-3 d-flex flex-column align-items-center">
+                        <div class="quiz-name ml-2">Introduction to IT</div>
+                        <div class="section">27.02.2021</div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        {{-- <a href="/student"> </a> --}}
-            <div class="row quiz mt-3">
-                <div class="date d-flex align-items-center">
-                    <div class="col-auto">
-                        <p>May 7</p>
-                    </div>
-
-                    <div class="col line"></div>
-                </div>
-
-                <div class="body mt-3 d-flex flex-column align-items-center">
-                    <div class="blue-decor"></div>
-
-                    <div class="col top d-flex align-items-center">
-                        <div class="quiz-number mr-2">Quiz 1</div>
-                        <div class="line"></div>
-                        <div class="quiz-name ml-2">Introduction to IT</div>
-                    </div>
-
-                    <div class="col bottom">
-                        Questions: 10, Time limit: 15m</div>
-
-                    <div class="section">SEC 001</div>
-                </div>
-            </div>
     </div>
 
-            {{--  href="/student" class="fab ripple">+</a> --}}
-               <!-- change adressing page -->
 
+    <div class="container mt-5 student-quizzes">
+        <h2>Completed quizzes</h2>
+        <div class="row page-name mt-3">
+            <div class="col-lg-6">
+                <div class="quiz">
+                    <div class="date d-flex align-items-center"></div>
+                    <div class="body mt-3 d-flex flex-column align-items-center">
+                        <div class="quiz-name ml-2">Introduction to IT</div>
+                        <div class="section">27.02.2021</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="quiz">
+                    <div class="date d-flex align-items-center"></div>
+                    <div class="body mt-3 d-flex flex-column align-items-center">
+                        <div class="quiz-name ml-2">Introduction to IT</div>
+                        <div class="section">27.02.2021</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
-
-    {{--             <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-        <div id="myDropdown" class="dropdown-content">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </div>
-
-    <script>
-        /* When the user clicks on the button,
-        toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropbtn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
-    </script> --}}
 
 
