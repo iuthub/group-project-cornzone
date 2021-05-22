@@ -52,8 +52,8 @@ Route::group(['prefix' => 'student'], function () {
     Route::get('/all-quizzes', function () {
         return view('student.all-quizzes');
     });
-    Route::get('/true-false', function () {
-        return view('student.true-false');
+    Route::get('/quizzes/completed/1', function () {
+        return view('student.completed_quiz');
     });
     Route::get('/fill', function () {
         return view('student.fill');

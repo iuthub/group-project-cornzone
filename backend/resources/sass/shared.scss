@@ -188,4 +188,14 @@ header {
         color: white;
         background: $green;
     }
+
+    .answer.incorrect {
+        color: white;
+        background: $red;
+    }
+
+    .answer.highlight {
+        color: white;
+        background: $violet;
+    }
 }

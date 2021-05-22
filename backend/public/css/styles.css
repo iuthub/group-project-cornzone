@@ -14333,6 +14333,16 @@ header .log-out {
   background: #00acb3;
 }
 
+.answers .answer.incorrect {
+  color: white;
+  background: #f36a79;
+}
+
+.answers .answer.highlight {
+  color: white;
+  background: #8574a1;
+}
+
 .bg-danger-v2 {
   background-color: #ffe7e9;
 }

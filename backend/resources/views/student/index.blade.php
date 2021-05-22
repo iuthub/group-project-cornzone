@@ -46,23 +46,27 @@
 
             <div class="row mt-3">
                 <div class="col-lg-6">
-                    <div class="quiz">
-                        <div class="date d-flex align-items-center"></div>
-                        <div class="body mt-3 d-flex flex-column align-items-center">
-                            <div class="quiz-name ml-2">Introduction to IT</div>
-                            <div class="section">27.02.2021</div>
+                    <a href="student/quizzes/active/1">
+                        <div class="quiz">
+                            <div class="date d-flex align-items-center"></div>
+                            <div class="body mt-3 d-flex flex-column align-items-center">
+                                <div class="quiz-name ml-2">Introduction to IT</div>
+                                <div class="section">27.02.2021</div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-lg-6">
-                    <div class="quiz">
-                        <div class="date d-flex align-items-center"></div>
-                        <div class="body mt-3 d-flex flex-column align-items-center">
-                            <div class="quiz-name ml-2">Introduction to IT</div>
-                            <div class="section">27.02.2021</div>
+                    <a href="student/quizzes/active/1">
+                        <div class="quiz">
+                            <div class="date d-flex align-items-center"></div>
+                            <div class="body mt-3 d-flex flex-column align-items-center">
+                                <div class="quiz-name ml-2">Introduction to IT</div>
+                                <div class="section">27.02.2021</div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -72,23 +76,27 @@
 
             <div class="row mt-3">
                 <div class="col-lg-6">
-                    <div class="quiz">
+                    <a href="student/quizzes/completed/1">
+                        <div class="quiz">
                         <div class="date d-flex align-items-center"></div>
                         <div class="body mt-3 d-flex flex-column align-items-center">
                             <div class="quiz-name ml-2">Introduction to IT</div>
                             <div class="section">27.02.2021</div>
                         </div>
                     </div>
+                    </a>
                 </div>
 
                 <div class="col-lg-6">
-                    <div class="quiz">
-                        <div class="date d-flex align-items-center"></div>
-                        <div class="body mt-3 d-flex flex-column align-items-center">
-                            <div class="quiz-name ml-2">Introduction to IT</div>
-                            <div class="section">27.02.2021</div>
+                    <a href="student/quizzes/completed/1">
+                        <div class="quiz">
+                            <div class="date d-flex align-items-center"></div>
+                            <div class="body mt-3 d-flex flex-column align-items-center">
+                                <div class="quiz-name ml-2">Introduction to IT</div>
+                                <div class="section">27.02.2021</div>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
