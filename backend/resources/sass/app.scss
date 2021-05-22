@@ -106,45 +106,35 @@
         text-align: center;
     }
 
-    .quiz-info {
-        text-align: end;
-
+    .quiz-info-left {
         .date {
-            color: $green;
-            font-size: 1.2rem;
-            font-weight: bolder;
+            color: $black;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
         .duration {
             color: $placeholderColor;
-            font-weight: 500;
+            font-size: 0.95rem;
         }
     }
-}
 
-.quiz-item {
-    border-radius: 20px;
-    // padding: 40px 100px;
-    // padding: 14px 28px;
-    display: flex;
-    &_pos {
-        background-color: $blue;
-        padding: 14px 28px;
-        border-bottom-right-radius: 20px;
-        border-top-left-radius: 20px;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-    &_pos-wrapper {
-        position: relative;
-        width: 63px;
-        height: 100%;
-    }
-    &_content {
-        padding: 35px 60px;
-        width: calc(100% - 63px);
-        margin-left: auto;
+    .quiz-info-right {
+        .points {
+            color: $black;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .results {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: $green;
+
+            i {
+                font-size: 0.7rem;
+            }
+        }
     }
 }
 
@@ -169,14 +159,13 @@
     }
 
     .content-table {
-        font-family: rubik, roboto;
         border-collapse: collapse;
         margin: 25px 0;
         width: 100%;
     }
 
     .content-table thead tr {
-        color: #00acb3;
+        color: $green;
         text-align: left;
         font-weight: bold;
         padding-bottom: 10px;

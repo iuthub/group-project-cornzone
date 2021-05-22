@@ -46,6 +46,10 @@ header {
     color: $black;
 }
 
+.page-sub-title {
+    color: $placeholderColor;
+}
+
 .question-title {
     position: relative;
     border: 1px solid $green;
@@ -197,5 +201,31 @@ header {
     .answer.highlight {
         color: white;
         background: $violet;
+    }
+}
+
+.quiz-item {
+    border-radius: 20px;
+    // padding: 40px 100px;
+    // padding: 14px 28px;
+    display: flex;
+    &_pos {
+        background-color: $blue;
+        padding: 14px 28px;
+        border-bottom-right-radius: 20px;
+        border-top-left-radius: 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    &_pos-wrapper {
+        position: relative;
+        width: 63px;
+        height: 100%;
+    }
+    &_content {
+        padding: 35px 60px;
+        width: calc(100% - 63px);
+        margin-left: auto;
     }
 }

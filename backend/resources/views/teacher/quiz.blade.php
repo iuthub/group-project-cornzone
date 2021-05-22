@@ -16,18 +16,32 @@
     @include('partials.header')
 
     <div id="read-quiz-page" class="container mt-3 mb-5">
-        <div class="row page-name">
+        <div class="row">
             <div class="col">
-                <h2>Quiz 1</h2>
+                <h2 class="page-name">Quiz 1</h2>
+
+                <h5 class="page-sub-title text-center mt-1">Some text (Quiz title)</h5>
             </div>
         </div>
 
-        <div class="quiz-info">
-            <div class="date">
-                15.05.2021
+        <div class="row justify-content-between">
+            <div class="quiz-info-left">
+                <div class="date">
+                    15.05.2021
+                </div>
+                <div class="duration">
+                    10 minutes
+                </div>
             </div>
-            <div class="duration">
-                10 minutes
+
+            <div class="quiz-info-right">
+                <div class="points">
+                    Total: <strong>10</strong>
+                </div>
+
+                <a href="/teacher/quiz/1/results" class="results">
+                    See results <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </a>
             </div>
         </div>
 
