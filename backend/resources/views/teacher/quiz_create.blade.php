@@ -22,8 +22,8 @@
             </div>
         </div>
 
-        <form id="create-quiz-form" method="POST" action="{{ route("quizCreate") }}">
-            @csrf
+        <form id="create-quiz-form" method="post" action="{{ route("quizCreate") }}">
+        @csrf
             <div class="pt-3">
                 <h3 class="sub-title mb-2">General quiz info</h3>
 
@@ -40,11 +40,9 @@
                         >
                     </div>
 
-                        <label class="app-select-label">
-                            <select name="subject" class="app-select-option">
-                                <option value="Math" selected>Math</option>
-                            </select>
-                        </label>
+                    <div class="col-4">
+                        <h4 class="input-title mb-1">Title</h4>
+                        <input name="title" type="text" class="app-input" placeholder="Title" required>
                     </div>
 
                     <div class="col-4">

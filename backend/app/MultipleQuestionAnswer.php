@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MultipleQuestionAnswer extends Model
 {
     protected $fillable = [
-        'super_question_id', 'option_set_id'
+        'super_question_id', 'answer',
     ];
 
     public function superQuestion()

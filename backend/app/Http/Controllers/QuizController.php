@@ -12,6 +12,7 @@ use App\Teacher;
 use App\TrueFalseQuestionAnswer;
 use Illuminate\Http\Request;
 use Auth;
+use App\MultipleQuestionOptionSet;
 
 class QuizController extends Controller
 {
@@ -40,7 +41,6 @@ class QuizController extends Controller
             'teacher_id' => $teacher->id,
             'duration' => $request->input('duration'),
         ));
-        dd($quiz);
         // $data = request()->validate([
         //     'title' => 'required',
         //     'duration' => 'required',
@@ -70,61 +70,68 @@ class QuizController extends Controller
 
             // $question_type_column_name = 'title';
 
-            // $superQuestion = SuperQuestion::create(array(
-            //     'quiz_id' => $quiz->id,
-            //     'question' => $value["questionText"],
-            //     'points' => $value["points"],
-            //     'question_type_id' => QuestionType::where($question_type_column_name, '=', $value['type'])->first()
-            // ));
+            $superQuestion = SuperQuestion::create(array(
+                'quiz_id' => $quiz->id,
+                'question' => $value["questionText"],
+                'points' => $value["points"],
+                'question_type_id' => $value["type"]
+            ));
 
 
-            // if (strtolower($value["type"]) == 'multiple') {
-            //     $answers = array();
-            //     $answer = '';
-            //     //сможем ли пройтись по индексам?
-            //     for ($i = 0; $i < 4; $i++) {
-            //         $answers[0];//сюда надо вносить ответы и потом записывать в option 1 2 3 4
-            //     }
+            if (strtolower($value["type"]) == '3') {
+                $answers = '';
 
-            //     foreach ($value["answers"] as $answerKey => $answerValue) {
-            //         print $answerValue["answerText"] . "     ";
-            //         print $answerValue["isRightAnswer"] . "<br>";
-            //     }
+                foreach ($value["answers"] as $answerKey => $answerValue) {
+                    print $answerValue["answerText"] . "     ";
+                    print $answerValue["isRightAnswer"] . "<br>";
+                    if ($answerValue["isRightAnswer"] == true)
+                    {
+                        $right_answer = $answerValue["answerText"];
+                    }
+
+                    // $answers .= $answerValue["answerText"];
+                }
+
+                $mq_answer =  MultipleQuestionAnswer::create(array(
+                    'super_question_id' => $superQuestion->id,
+                    'answer' => $right_answer,
+                ));
+
+                foreach ($value["answers"] as $answerKey => $answerValue) {
+         
+                MultipleQuestionOptionSet::create(array(
+                    'MQA_id' => $mq_answer->id,
+                    'text' => $answerValue["answerText"],
+                ));
+                }
+            }
+
+             else if (strtolower($value["type"]) == '2') {
+                $rightAnswer = '';
+
+                foreach ($value["answers"] as $answerKey => $answerValue) {
+                    print $answerValue["answerText"] . "     ";
+                    print $answerValue["isRightAnswer"] . "<br>";
+                    if ($answerValue['isRightAnswer'] == "1" || strtolower($answerValue['isRightAnswer']) == "true")
+                    {
+                        $rightAnswer = $answerValue["answerText"];
+                    }
+                }
 
 
-            //     MultipleQuestionAnswer::create(array(
-            //         'super_question_id' => $superQuestion->id,
-            //         'option_set_id' => '',
-            //     ));
+                TrueFalseQuestionAnswer::create(array(
+                    'answer' => $answerValue["answerText"],
+                    'super_question_id' => $superQuestion->id,
+                ));
+                }
+                
+                else if (strtolower($value["type"]) == '1') {
 
-            // } else if (strtolower($value["type"]) == 'true/false') {
-            //     $rightAnswer = '';
-
-            //     foreach ($value["answers"] as $answerKey => $answerValue) {
-            //         print $answerValue["answerText"] . "     ";
-            //         print $answerValue["isRightAnswer"] . "<br>";
-            //         if ($answerValue['isRightAnswer'] == "1" || strtolower($answerValue['isRightAnswer']) == "true") {
-            //             $rightAnswer = $answerValue["answerText"];
-            //         }
-            //     }
-
-
-            //     TrueFalseQuestionAnswer::create(array(
-            //         'answer' => '',//must be empty when creating
-            //         'super_question_id' => $superQuestion->id,
-            //     ));
-            // } else if (strtolower($value["type"]) == 'text') {
-            //     $answer = '';
-
-            //     foreach ($value["answers"] as $answerKey => $answerValue) {
-            //         $answer = $answerValue["answerText"];
-            //     }//убрать форич, просто кастить как мапу потому что берем только одно значение
-
-            //     SimpleQuestionAnswer::create(array(
-            //         'answer' => $answer,
-            //         'super_question_id' => $superQuestion->id,
-            //     ));
-            // }
+                SimpleQuestionAnswer::create(array(
+                    'answer' => $answerValue["answerText"],
+                    'super_question_id' => $superQuestion->id,
+                ));
+            }
         }
     }
 }
