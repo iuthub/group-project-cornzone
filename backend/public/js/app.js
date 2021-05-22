@@ -37284,7 +37284,7 @@ $(document).ready(function () {
           var button = _step4.value;
           $(button).on("click", function (e) {
             e.preventDefault();
-            linkInput.val("https://quizzes/".concat($(button).attr("quizId")));
+            linkInput.val("https://quizify.uz/quizzes/".concat($(button).attr("quizId")));
             $('#copy-link').modal({
               show: true
             });

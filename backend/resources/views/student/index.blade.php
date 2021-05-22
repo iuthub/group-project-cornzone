@@ -16,7 +16,9 @@
     @include('partials.header')
 
     <div id="student-index">
-        <form>
+        <form method="post" action="{{ route("acceptQuiz") }}">
+            @csrf
+
             <div class="modal fade" id="accept-quiz" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -28,7 +30,7 @@
                         </div>
                         <div class="modal-body">
                             <h4 class="input-title mb-1">Quiz link</h4>
-                            <input name="quizLink" type="text" class="app-input" placeholder="E.g.: https://quizzes/1">
+                            <input name="quizLink" type="text" class="app-input" placeholder="E.g.: https://quizify.uz/quizzes/1">
 
                             <p class="app-input-message mt-1">
                                 Contact your teacher to get a link to the quiz

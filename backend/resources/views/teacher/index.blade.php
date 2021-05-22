@@ -27,7 +27,7 @@
                     </div>
                     <div class="modal-body">
                         <h4 class="input-title mb-1">Quiz link</h4>
-                        <input id="link-input" type="text" class="app-input" placeholder="https://quizzes/1" readonly>
+                        <input id="link-input" type="text" class="app-input" placeholder="https://quizify.uz/quizzes/1" readonly>
 
                         <p class="app-input-message mt-1">
                             Share this link with your students

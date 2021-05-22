@@ -78,7 +78,7 @@ $(document).ready(function () {
             $(button).on("click", function (e) {
                 e.preventDefault();
 
-                linkInput.val(`https://quizzes/${$(button).attr("quizId")}`)
+                linkInput.val(`https://quizify.uz/quizzes/${$(button).attr("quizId")}`)
 
                 $('#copy-link').modal({ show: true });
             });
