@@ -524,7 +524,7 @@
 }
 
 body {
-    font-family: sans-serif;
+    font-family: rubik;
     display: grid;
     height: 100vh;
     place-items: center;
@@ -532,8 +532,8 @@ body {
 
 .base-timer {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 100px;
+    height: 100px;
 }
 
 .base-timer__svg {
@@ -546,12 +546,12 @@ body {
 }
 
 .base-timer__path-elapsed {
-    stroke-width: 7px;
-    stroke: grey;
+    stroke-width: 10px;
+    stroke: #8574A1;
 }
 
 .base-timer__path-remaining {
-    stroke-width: 7px;
+    stroke-width: 10px;
     stroke-linecap: round;
     transform: rotate(90deg);
     transform-origin: center;
@@ -561,24 +561,25 @@ body {
 }
 
 .base-timer__path-remaining.green {
-    color: rgb(65, 184, 131);
+    color: #6EC5CC;
 }
 
-.base-timer__path-remaining.orange {
-    color: orange;
+.base-timer__path-remaining.yellow {
+    color: #F4EB9B;
 }
 
 .base-timer__path-remaining.red {
-    color: red;
+    color: #F36A79;
 }
 
 .base-timer__label {
+    color: #5D759B;
     position: absolute;
-    width: 300px;
-    height: 300px;
+    width: 100px;
+    height: 100px;
     top: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 48px;
+    font-size: 26px;
 }

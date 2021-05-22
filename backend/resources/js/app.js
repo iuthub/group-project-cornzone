@@ -17,15 +17,15 @@ $(document).ready(function () {
 });
 
 const FULL_DASH_ARRAY = 283;
-const WARNING_THRESHOLD = 10;
-const ALERT_THRESHOLD = 5;
+const WARNING_THRESHOLD = 10; // need to be automatized
+const ALERT_THRESHOLD = 5; // need to be automatized
 
 const COLOR_CODES = {
     info: {
         color: "green"
     },
     warning: {
-        color: "orange",
+        color: "yellow",
         threshold: WARNING_THRESHOLD
     },
     alert: {

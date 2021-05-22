@@ -37171,14 +37171,16 @@ $(document).ready(function () {
   }
 });
 var FULL_DASH_ARRAY = 283;
-var WARNING_THRESHOLD = 10;
-var ALERT_THRESHOLD = 5;
+var WARNING_THRESHOLD = 10; // need to be automatized
+
+var ALERT_THRESHOLD = 5; // need to be automatized
+
 var COLOR_CODES = {
   info: {
     color: "green"
   },
   warning: {
-    color: "orange",
+    color: "yellow",
     threshold: WARNING_THRESHOLD
   },
   alert: {
