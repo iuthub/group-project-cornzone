@@ -40,9 +40,11 @@
                         >
                     </div>
 
-                    <div class="col-4">
-                        <h4 class="input-title mb-1">Title</h4>
-                        <input name="title" type="text" class="app-input" placeholder="Title" required>
+                        <label class="app-select-label">
+                            <select name="subject" class="app-select-option">
+                                <option value="Math" selected>Math</option>
+                            </select>
+                        </label>
                     </div>
 
                     <div class="col-4">

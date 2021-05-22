@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SuperQuestion extends Model
 {
     protected $fillable = [
-        'question', 'point'
+        'quiz_id', 'question', 'points', 'question_type_id'
     ];
 
     public function studentAnswers()

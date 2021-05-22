@@ -28,12 +28,12 @@ class QuizController extends Controller
     }
 
     public function postCreateQuiz(Request $request)
-    {   
-        
+    {
+
         $teacher = Teacher::find($request->session()->get("teacherId"));
 
         //todo get subject id teacher id from session
-        
+
         $quiz = Quiz::create(array(
             'title' => $request->input('title'),
             'subject_id' => $teacher->subject_id,
