@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
+    public static function getQuestionsNumberByQuizId($id){
+        $questions = SuperQuestion::where("quiz_id", $id)->get();
+        return sizeof($questions);
+    }
+
     public function getCreateQuiz(Request $request)
     {
         $questionTypes = QuestionType::all();
