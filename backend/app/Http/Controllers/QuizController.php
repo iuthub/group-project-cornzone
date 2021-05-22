@@ -16,6 +16,11 @@ use App\MultipleQuestionOptionSet;
 
 class QuizController extends Controller
 {
+    public static function getQuestionsNumberByQuizId($id){
+        $questions = SuperQuestion::where("quiz_id", $id)->get();
+        return sizeof($questions);
+    }
+
     public function getCreateQuiz(Request $request)
     {
         $questionTypes = QuestionType::all();
@@ -84,48 +89,42 @@ class QuizController extends Controller
                 foreach ($value["answers"] as $answerKey => $answerValue) {
                     print $answerValue["answerText"] . "     ";
                     print $answerValue["isRightAnswer"] . "<br>";
-                    if ($answerValue["isRightAnswer"] == true)
-                    {
+                    if ($answerValue["isRightAnswer"] == true) {
                         $right_answer = $answerValue["answerText"];
                     }
 
                     // $answers .= $answerValue["answerText"];
                 }
 
-                $mq_answer =  MultipleQuestionAnswer::create(array(
+                $mq_answer = MultipleQuestionAnswer::create(array(
                     'super_question_id' => $superQuestion->id,
                     'answer' => $right_answer,
                 ));
 
                 foreach ($value["answers"] as $answerKey => $answerValue) {
-         
-                MultipleQuestionOptionSet::create(array(
-                    'MQA_id' => $mq_answer->id,
-                    'text' => $answerValue["answerText"],
-                ));
-                }
-            }
 
-             else if (strtolower($value["type"]) == '2') {
+                    MultipleQuestionOptionSet::create(array(
+                        'MQA_id' => $mq_answer->id,
+                        'text' => $answerValue["answerText"],
+                    ));
+                }
+            } else if (strtolower($value["type"]) == '2') {
                 $rightAnswer = '';
 
                 foreach ($value["answers"] as $answerKey => $answerValue) {
                     print $answerValue["answerText"] . "     ";
                     print $answerValue["isRightAnswer"] . "<br>";
-                    if ($answerValue['isRightAnswer'] == "1" || strtolower($answerValue['isRightAnswer']) == "true")
-                    {
+                    if ($answerValue['isRightAnswer'] == "1" || strtolower($answerValue['isRightAnswer']) == "true") {
                         $rightAnswer = $answerValue["answerText"];
                     }
                 }
 
 
                 TrueFalseQuestionAnswer::create(array(
-                    'answer' => $answerValue["answerText"],
+                    'answer' => $value["answers"][0]["isRightAnswer"],
                     'super_question_id' => $superQuestion->id,
                 ));
-                }
-                
-                else if (strtolower($value["type"]) == '1') {
+            } else if (strtolower($value["type"]) == '1') {
 
                 SimpleQuestionAnswer::create(array(
                     'answer' => $answerValue["answerText"],

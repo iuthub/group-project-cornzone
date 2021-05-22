@@ -11,16 +11,27 @@
 |
 */
 
+use App\Quiz;
+
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/login', function () {
     return view('login');
 });
+
 Route::post('/', 'CheckRoleController@postRoleType');
+
 Route::group(['prefix' => 'teacher'], function () {
     Route::get('', function () {
-        return view('teacher.index');
+
+        return view('teacher.index', [
+            "quizzes" =>
+                Quiz::where("teacher_id", session()->get("teacherId"))
+                    ->orderBy('created_at')
+                    ->get()
+                    ->toArray()
+        ]);
     })->name('teacherIndex');
 
     Route::get('/sign-in', 'AuthController@getSignInTeacher')->name('signInTeacher');
@@ -32,7 +43,7 @@ Route::group(['prefix' => 'teacher'], function () {
     Route::get('/quiz/create', 'QuizController@getCreateQuiz')->name('quizCreate');
     Route::post('/quiz/create', 'QuizController@postCreateQuiz');
 
-    Route::get('/quiz/1', function() {
+    Route::get('/quiz/1', function () {
         return dd(auth()->guard('teacher_web'));;
     });
 

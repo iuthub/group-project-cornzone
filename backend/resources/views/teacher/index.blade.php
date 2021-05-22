@@ -11,12 +11,15 @@
 @section("logout-url")
     /login
 @endsection
-
+<?php  use App\Http\Controllers\QuizController;
+use Illuminate\Support\Carbon;
+?>
 @section('content')
     @include('partials.header')
 
     <div id="teacher-quizzes" class="container mt-3">
-        <div class="modal fade" id="copy-link" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="copy-link" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -40,32 +43,58 @@
         <div class="row page-name">
             <h2>All Quizzes</h2>
         </div>
-
-        <a href="/teacher/quiz/1">
+        <?php
+        foreach ($quizzes as $quiz){
+        $formattedDate = Carbon::parse($quiz['created_at'])->format("M d");
+        ?>
+        <a href="/teacher/quiz/<?=$quiz['id']?>">
             <div class="row quiz mt-3">
+                <?php
+                $currentQuizIndex = array_search($quiz, $quizzes);
+                $needToDisplay = true;
+                if ($currentQuizIndex > 0) {
+                    $previousQuizIndex = $currentQuizIndex - 1;
+                    $previousQuiz = $quizzes[$previousQuizIndex];
+
+                    $currQuizDate = Carbon::parse($quiz['created_at'])->format("M d");
+                    $prevQuizDate = Carbon::parse($previousQuiz['created_at'])->format("M d");
+
+                    $needToDisplay = $prevQuizDate != $currQuizDate;
+                }
+                if ($needToDisplay){
+                ?>
                 <div class="date d-flex align-items-center">
                     <div class="col-auto">
-                        <p>May 7</p>
+                        <p><?=$formattedDate?></p>
                     </div>
 
                     <div class="col line"></div>
                 </div>
-
+                <?php
+                }
+                ?>
                 <div class="body mt-3 d-flex flex-column align-items-center">
                     <div class="blue-decor"></div>
 
                     <div class="col top d-flex align-items-center">
-                        <div class="quiz-number mr-2">Quiz 1</div>
+                        <div class="quiz-number mr-2">Quiz <?=$quiz['id']?></div>
                         <div class="line"></div>
-                        <div class="quiz-name ml-2">Introduction to IT</div>
+                        <div class="quiz-name ml-2"><?=$quiz['title']?></div>
                     </div>
 
-                    <div class="col bottom">Questions: 10, Time limit: 15m</div>
+                    <div class="col bottom">Questions: <?= QuizController::getQuestionsNumberByQuizId($quiz['id'])?>,
+                        Time
+                        limit: <?=$quiz['duration']?>m
+                    </div>
 
-                    <button quizId="1" class="bottom-info copy-button"><i class="fa fa-link" aria-hidden="true"></i> Copy link</button>
+                    <button quizId="<?= $quiz['id']?>" class="bottom-info copy-button"><i class="fa fa-link"
+                                                                                          aria-hidden="true"></i>
+                        Copy link
+                    </button>
                 </div>
             </div>
         </a>
+        <?php }?>
     </div>
 
     <a href="/teacher/quiz/create" class="fab ripple">+</a>
