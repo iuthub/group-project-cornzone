@@ -19,7 +19,7 @@
 @import "views/auth";
 @import "views/main";
 
-.teacher-quizzes {
+#teacher-quizzes {
     .quiz {
         .date {
             width: 100%;
@@ -80,7 +80,7 @@
                 position: absolute;
             }
 
-            .section {
+            .bottom-info {
                 color: #fff;
                 padding: 4px 10px;
                 position: absolute;
@@ -89,6 +89,15 @@
                 background-color: $green;
                 border-radius: $borderRadius 0 $borderRadius 0;
                 font-weight: 500;
+                cursor: pointer;
+
+                transition: background-color 150ms linear;
+                outline: none;
+                border: none;
+            }
+
+            .bottom-info:hover {
+                background-color: darken($green, 5%);
             }
         }
     }
