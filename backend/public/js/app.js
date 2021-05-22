@@ -37174,14 +37174,18 @@ var createQuizPage = $("#create-quiz-page");
 var teacherIndexPage = $("#teacher-quizzes");
 var takeQuizPage = $("#take-quiz");
 
-function showToast(message, options) {
+function showToast(message) {
   var toast = $(".toast");
   $(toast.children(".toast-body")[0]).text(message);
-  toast.toast(options);
   toast.toast("show");
 }
 
 $(document).ready(function () {
+  $(".toast").toast({
+    delay: 4000,
+    autohide: true
+  });
+
   if (createQuizPage != null) {
     onCreateQuizInit();
   }
@@ -37195,10 +37199,7 @@ $(document).ready(function () {
       var questionAnswers = {};
       submitButton.on("click", function (e) {
         if (Object.keys(questionAnswers).length !== questionElements.length) {
-          showToast("You haven't answered all the questions", {
-            delay: 4000,
-            autohide: true
-          });
+          showToast("You haven't answered all the questions");
         } else {
           answersInput.val(JSON.stringify(questionAnswers));
         }
@@ -37283,7 +37284,7 @@ $(document).ready(function () {
           var button = _step4.value;
           $(button).on("click", function (e) {
             e.preventDefault();
-            linkInput.val("https://quizzes/".concat($(button).attr("quizId")));
+            linkInput.val("https://quizify.uz/quizzes/".concat($(button).attr("quizId")));
             $('#copy-link').modal({
               show: true
             });
@@ -37636,8 +37637,8 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\inha\IP\group-project-cornzone\backend\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\inha\IP\group-project-cornzone\backend\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Development\Projects\Education\group-project-cornzone\backend\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Development\Projects\Education\group-project-cornzone\backend\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
