@@ -20,10 +20,6 @@
                         <h3>Login to continue</h3>
                     </div>
 
-                    {{--                <div class="sub-title" :class="{ errorSubtitle: isError }">--}}
-                    {{--                    <h3>{{ subTitle }}</h3>--}}
-                    {{--                </div>--}}
-
                     <div class="mt-3">
                         <input name="email" id="email" class="app-input" type="text" placeholder="Email" required>
                     </div>

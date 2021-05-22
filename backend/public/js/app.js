@@ -37172,29 +37172,91 @@ var _require = __webpack_require__(/*! ./create_quiz */ "./resources/js/create_q
 
 var createQuizPage = $("#create-quiz-page");
 var teacherIndexPage = $("#teacher-quizzes");
+var takeQuizPage = $("#take-quiz");
+
+function showToast(message, options) {
+  var toast = $(".toast");
+  $(toast.children(".toast-body")[0]).text(message);
+  toast.toast(options);
+  toast.toast("show");
+}
+
 $(document).ready(function () {
   if (createQuizPage != null) {
     onCreateQuizInit();
   }
 
-  if (teacherIndexPage != null) {
+  if (takeQuizPage != null) {
     (function () {
-      var copyButtons = $(".copy-button");
-      var linkInput = $("#link-input");
+      var questionElements = $(".question-constructor");
+      var submitButton = $("#submit-quiz");
+      var answersInput = $("#answers-input");
+      var quizForm = $("#quiz-form");
+      var questionAnswers = {};
+      submitButton.on("click", function (e) {
+        if (Object.keys(questionAnswers).length !== questionElements.length) {
+          showToast("You haven't answered all the questions", {
+            delay: 4000,
+            autohide: true
+          });
+        } else {
+          answersInput.val(JSON.stringify(questionAnswers));
+        }
+      });
 
-      var _iterator = _createForOfIteratorHelper(copyButtons),
+      var _iterator = _createForOfIteratorHelper(questionElements),
           _step;
 
       try {
         var _loop = function _loop() {
-          var button = _step.value;
-          $(button).on("click", function (e) {
-            e.preventDefault();
-            $('#copy-link').modal({
-              show: true
+          var questionElement = _step.value;
+          var questionId = $(questionElement).attr("questionId");
+          var answerElements = $($(questionElement).children(".answers")[0]).children(".col-6").children(".answer");
+          var answerInput = $($(questionElement).children(".answers")[0]).children(".col-12").children(".answer")[0];
+
+          var _iterator2 = _createForOfIteratorHelper(answerElements),
+              _step2;
+
+          try {
+            var _loop2 = function _loop2() {
+              var answerElement = _step2.value;
+              var answer = $(answerElement);
+              answer.on("click", function (_) {
+                questionAnswers[questionId] = answer.text().trim();
+
+                var _iterator3 = _createForOfIteratorHelper(answer.parent().siblings()),
+                    _step3;
+
+                try {
+                  for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                    var sibling = _step3.value;
+                    $(sibling).children(".answer").removeClass("highlight");
+                  }
+                } catch (err) {
+                  _iterator3.e(err);
+                } finally {
+                  _iterator3.f();
+                }
+
+                answer.addClass("highlight");
+              });
+            };
+
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              _loop2();
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
+          }
+
+          if (answerInput) {
+            $($(answerInput).children("input")[0]).on("change", function (e) {
+              questionAnswers[questionId] = e.target.value;
+              $(e.target).addClass("highlight");
             });
-            linkInput.val("https://quizzes/".concat($(button).attr("quizid")));
-          });
+          }
         };
 
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
@@ -37204,6 +37266,37 @@ $(document).ready(function () {
         _iterator.e(err);
       } finally {
         _iterator.f();
+      }
+    })();
+  }
+
+  if (teacherIndexPage != null) {
+    (function () {
+      var copyButtons = $(".copy-button");
+      var linkInput = $("#link-input");
+
+      var _iterator4 = _createForOfIteratorHelper(copyButtons),
+          _step4;
+
+      try {
+        var _loop3 = function _loop3() {
+          var button = _step4.value;
+          $(button).on("click", function (e) {
+            e.preventDefault();
+            linkInput.val("https://quizzes/".concat($(button).attr("quizId")));
+            $('#copy-link').modal({
+              show: true
+            });
+          });
+        };
+
+        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+          _loop3();
+        }
+      } catch (err) {
+        _iterator4.e(err);
+      } finally {
+        _iterator4.f();
       }
     })();
   }

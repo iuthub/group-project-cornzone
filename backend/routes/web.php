@@ -53,14 +53,12 @@ Route::group(['prefix' => 'student'], function () {
     Route::get('/sign-in', 'AuthController@getSignInStudent')->name('signInStudent');
     Route::post('/sign-in', 'AuthController@postSignInStudent');
 
-    Route::get('/all-quizzes', function () {
-        return view('student.all-quizzes');
-    });
     Route::get('/quizzes/completed/1', function () {
         return view('student.completed_quiz');
     });
-    Route::get('/fill', function () {
-        return view('student.fill');
+
+    Route::get('/quizzes/active/1', function () {
+        return view('student.take_quiz');
     });
 
     Route::get('/sign-up', 'AuthController@getSignUpStudent')->name('signUpStudent');

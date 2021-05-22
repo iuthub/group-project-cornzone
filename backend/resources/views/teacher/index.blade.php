@@ -62,7 +62,7 @@
 
                     <div class="col bottom">Questions: 10, Time limit: 15m</div>
 
-                    <button quizid="1" class="bottom-info copy-button"><i class="fa fa-link" aria-hidden="true"></i> Copy link</button>
+                    <button quizId="1" class="bottom-info copy-button"><i class="fa fa-link" aria-hidden="true"></i> Copy link</button>
                 </div>
             </div>
         </a>
