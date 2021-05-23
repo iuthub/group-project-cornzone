@@ -39,8 +39,7 @@ Route::group(['prefix' => 'teacher', 'middleware'=>EnsureUserAuthorised::class],
 
     Route::get('/quiz/{id}', 'TeacherController@getQuiz');
 
-
-    Route::get('/quiz/{quiz_id}/results', 'StudentsAnswerController@getStudentsList');
+    Route::get('/quiz/{quizId}/results', 'StudentsAnswerController@getStudentsList');
     Route::get('/quiz/{quizId}/results/{studentId}', 'QuizController@getStudentAnswers')->name('studentAnswers');
 });
 
