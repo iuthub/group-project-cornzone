@@ -39,36 +39,37 @@
             </div>
         </div>
 
+        <?php if (count($students) == 0) { ?>
+            <h3 class="text-center page-name w-100 mt-3">Student results will be displayed here</h3>
+        <?php } else { ?>
+            <table class="content-table">
+                <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Points</th>
+                    <th></th>
+                </tr>
 
-        <table class="content-table">
-            <thead>
-            <tr>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Points</th>
-                <th></th>
-            </tr>
+                </thead>
 
-            </thead>
-
-
-        @foreach($students as $student)
-            <tr>
-                <td> {{ $student->first_name }} {{ $student->last_name }} </td>
-                <td>{{ $student->email }}</td>
-                <td>{{ $points[$student->id]["taken"] }} / {{ $points[$student->id]["total"] }}</td>
-                <td>
-                    <a href="/teacher/quiz/1/results/{{ $student->id }}" class="app-raised-button violet">
-                        See
-                        <span class="button__icon">
-                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                        </span>
-                    </a>
-                </td>
-            </tr>
-        @endforeach
-        </table>
-
+                @foreach($students as $student)
+                    <tr>
+                        <td> {{ $student->first_name }} {{ $student->last_name }} </td>
+                        <td>{{ $student->email }}</td>
+                        <td>{{ $points[$student->id]["taken"] }} / {{ $points[$student->id]["total"] }}</td>
+                        <td>
+                            <a href="/teacher/quiz/1/results/{{ $student->id }}" class="app-raised-button violet">
+                                See
+                                <span class="button__icon">
+                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            </span>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        <?php } ?>
     </div>
 
 @endsection

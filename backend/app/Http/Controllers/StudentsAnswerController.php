@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\StudentAnswer;
 use App\SuperQuestion;
 use Illuminate\Http\Request;
-use App\Student;
 use App\Quiz;
 use App\MultipleQestionOptionSet;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 
 class StudentsAnswerController extends Controller
@@ -17,7 +17,10 @@ class StudentsAnswerController extends Controller
     {
         $quizId = $request->route('quizId');
         $quiz = Quiz::find($quizId);
-        $students = Student::all();
+
+        $students = DB::table('student_quiz')
+            ->where("quiz_id", $quizId)
+            ->get();
 
         $points = [];
 
