@@ -20,6 +20,10 @@
     @include('partials.header')
 @endsection
 
+<?php
+use Illuminate\Support\Carbon;
+?>
+
 @section('content')
     <div id="student-index">
         <form method="post" action="{{ route("acceptQuiz") }}">
@@ -69,7 +73,7 @@
                                 <div class="date d-flex align-items-center"></div>
                                 <div class="body mt-3 d-flex flex-column align-items-center">
                                     <div class="quiz-name ml-2"><?=$activeQuiz->title?></div>
-                                    <div class="bottom-info"><?=$activeQuiz->created_at?></div>
+                                    <div class="bottom-info">{{ Carbon::parse($activeQuiz->created_at)->format("M d") }}</div>
                                 </div>
                             </div>
                         </a>
@@ -92,7 +96,7 @@
                             <div class="date d-flex align-items-center"></div>
                             <div class="body mt-3 d-flex flex-column align-items-center">
                                 <div class="quiz-name ml-2"><?=$completedQuiz->title?></div>
-                                <div class="bottom-info"><?=$completedQuiz->created_at?></div>
+                                <div class="bottom-info">{{ Carbon::parse($completedQuiz->created_at)->format("M d") }}</div>
                             </div>
                         </div>
                     </a>

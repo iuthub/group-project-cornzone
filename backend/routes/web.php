@@ -39,8 +39,6 @@ Route::group(['prefix' => 'teacher'], function () {
 
 
     Route::get('/quiz/{quiz_id}/results', 'StudentsAnswerController@getStudentsList');
-    Route::get('/quiz/{quiz_id}/results/{student_id}', 'StudentsAnswerController@getStudentsAnswer');
-
     Route::get('/quiz/{quizId}/results/{studentId}', 'QuizController@getStudentAnswers')->name('studentAnswers');
 });
 
