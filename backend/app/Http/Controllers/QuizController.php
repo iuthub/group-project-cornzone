@@ -95,8 +95,7 @@ class QuizController extends Controller
         return redirect(route("teacherIndex"));
     }
 
-    public function acceptQuiz(Request $request)
-    {
+    public function acceptQuiz(Request $request) {
         $quizId = substr($request->input('quizLink'), -1);
 
         DB::table('student_quiz')->insertGetId([

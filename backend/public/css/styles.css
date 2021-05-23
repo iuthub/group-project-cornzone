@@ -14815,13 +14815,6 @@ header .log-out {
   font-weight: 500;
 }
 
-body {
-  font-family: rubik;
-  display: grid;
-  height: 100vh;
-  place-items: center;
-}
-
 .base-timer {
   position: relative;
   width: 100px;
@@ -14875,3 +14868,4 @@ body {
   justify-content: center;
   font-size: 26px;
 }
+
