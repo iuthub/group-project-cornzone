@@ -38,9 +38,8 @@ Route::group(['prefix' => 'teacher'], function () {
         return view('teacher.quiz');
     });
 
-    Route::get('/quiz/1/results', function () {
-        return view('teacher.list_of_students');
-    });
+    Route::get('/quiz/{quiz_id}/results', 'StudentsAnswerController@getStudentsList');
+    Route::get('/quiz/{quiz_id}/results/{student_id}', 'StudentsAnswerController@getStudentsAnswer');
 
     Route::get('/quiz/{quizId}/results/{studentId}', 'QuizController@getStudentAnswers')->name('studentAnswers');
 });

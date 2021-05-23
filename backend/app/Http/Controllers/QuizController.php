@@ -52,6 +52,15 @@ class QuizController extends Controller
         $questions = json_decode($request->input('questions'), true);
 
         foreach ($questions as $key => $value) {
+            print $value["type"] . "<br>";
+            print $value["points"] . "<br>";
+            print $value["questionText"] . "<br>";
+            foreach ($value["answers"] as $answerKey => $answerValue) {
+                print $answerValue["answerText"] . "     ";
+                print $answerValue["isRightAnswer"] . "<br>";
+            }
+
+
             $superQuestion = SuperQuestion::create(array(
                 'quiz_id' => $quiz->id,
                 'question' => $value["questionText"],
