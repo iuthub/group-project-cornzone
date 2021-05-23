@@ -42,9 +42,7 @@ Route::group(['prefix' => 'teacher'], function () {
         return view('teacher.list_of_students');
     });
 
-    Route::get('/quiz/1/results/1', function () {
-        return view('teacher.students_answer');
-    });
+    Route::get('/quiz/{quizId}/results/{studentId}', 'QuizController@getStudentAnswers')->name('studentAnswers');
 });
 
 Route::group(['prefix' => 'student'], function () {
