@@ -34,9 +34,9 @@ Route::group(['prefix' => 'teacher'], function () {
     Route::get('/quiz/create', 'QuizController@getCreateQuiz')->name('quizCreate');
     Route::post('/quiz/create', 'QuizController@postCreateQuiz');
 
-    Route::get('/quiz/{id}', function () {
-        return view('teacher.quiz');
-    });
+    Route::get('/quiz/{id}', 'TeacherController@getQuiz');
+
+
 
     Route::get('/quiz/{quiz_id}/results', 'StudentsAnswerController@getStudentsList');
     Route::get('/quiz/{quiz_id}/results/{student_id}', 'StudentsAnswerController@getStudentsAnswer');
