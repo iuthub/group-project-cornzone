@@ -105,7 +105,8 @@ class QuizController extends Controller
         return redirect(route("teacherIndex"));
     }
 
-    public function acceptQuiz(Request $request) {
+    public function acceptQuiz(Request $request)
+    {
         $quizId = substr($request->input('quizLink'), -1);
 
         DB::table('student_quiz')->insertGetId([
@@ -119,7 +120,8 @@ class QuizController extends Controller
         return redirect('/student');
     }
 
-    public function getTakeQuiz(Request $request) {
+    public function getTakeQuiz(Request $request)
+    {
         $quizId = $request->route('id');
 
         $quiz = Quiz::find($quizId);
@@ -154,7 +156,8 @@ class QuizController extends Controller
         ]);
     }
 
-    public function postTakeQuiz(Request $request) {
+    public function postTakeQuiz(Request $request)
+    {
         $studentAnswers = json_decode($request->input('studentAnswers'), true);
         $studentId = $request->session()->get("studentId");
         $quizId = $request->route('id');
