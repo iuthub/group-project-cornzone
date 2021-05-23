@@ -12,7 +12,6 @@
                     <div class="main-header_logo font-weight-bold">Quizify</div>
 
                     <a href="/login" class="main-header_login-btn text-white font-weight-bold">Login</a>
-
                 </div>
             </div>
         </div>
@@ -21,9 +20,7 @@
             <div class="container">
                 <div class="content-row">
                     <div class="main-content_info">
-                        <h1 class="font-weight-bold">Something exciting <br/>
-                            written there!</h1>
-                        <p class="mt-3">Some features given</p>
+                        <h1 class="font-weight-bold">Get Quizified <br> to stay exercised</h1>
                         <div class="mt-5 d-flex align-items-center">
                             <a href="https://github.com/JRakhimov/quizify" class=" mr-5" target="_blank">
                                 <img class="main-content_icon" src="../images/github-icon.svg" alt="github-icon">
@@ -32,9 +29,6 @@
                                 <img class="main-content_icon" src="../images/figma-icon.svg" alt="figma-icon">
                             </a>
                         </div>
-
-
-
                     </div>
 
                     <div class="main-content_img">
