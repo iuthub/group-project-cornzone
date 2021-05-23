@@ -11,7 +11,10 @@
 |
 */
 
+use App\Http\Middleware\EnsureUserAuthorised;
 use App\Quiz;
+use Illuminate\Support\Facades\Redirect;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,14 +25,14 @@ Route::get('/login', function () {
 
 Route::post('/', 'CheckRoleController@postRoleType');
 
-Route::group(['prefix' => 'teacher'], function () {
+Route::get('teacher/sign-in', 'AuthController@getSignInTeacher')->name('signInTeacher');
+Route::post('teacher/sign-in', 'AuthController@postSignInTeacher');
+
+Route::get('teacher/sign-up', 'AuthController@getSignUpTeacher')->name('signUpTeacher');
+Route::post('teacher/sign-up', 'AuthController@postSignUpTeacher');
+
+Route::group(['prefix' => 'teacher', 'middleware'=>EnsureUserAuthorised::class], function () {
     Route::get('', 'TeacherController@getTeacherIndex')->name('teacherIndex');
-
-    Route::get('/sign-in', 'AuthController@getSignInTeacher')->name('signInTeacher');
-    Route::post('/sign-in', 'AuthController@postSignInTeacher');
-
-    Route::get('/sign-up', 'AuthController@getSignUpTeacher')->name('signUpTeacher');
-    Route::post('/sign-up', 'AuthController@postSignUpTeacher');
 
     Route::get('/quiz/create', 'QuizController@getCreateQuiz')->name('quizCreate');
     Route::post('/quiz/create', 'QuizController@postCreateQuiz');
@@ -37,19 +40,20 @@ Route::group(['prefix' => 'teacher'], function () {
     Route::get('/quiz/{id}', 'TeacherController@getQuiz');
 
 
-
     Route::get('/quiz/{quiz_id}/results', 'StudentsAnswerController@getStudentsList');
     Route::get('/quiz/{quizId}/results/{studentId}', 'QuizController@getStudentAnswers')->name('studentAnswers');
 });
 
-Route::group(['prefix' => 'student'], function () {
+Route::get('student/sign-in', 'AuthController@getSignInStudent')->name('signInStudent');
+Route::post('student/sign-in', 'AuthController@postSignInStudent');
+
+Route::get('student/sign-up', 'AuthController@getSignUpStudent')->name('signUpStudent');
+Route::post('student/sign-up', 'AuthController@postSignUpStudent');
+
+Route::group(['prefix' => 'student','middleware'=>EnsureUserAuthorised::class], function () {
     Route::get('', 'StudentController@getStudentIndex')->name('studentIndex');
 
-    Route::get('/sign-in', 'AuthController@getSignInStudent')->name('signInStudent');
-    Route::post('/sign-in', 'AuthController@postSignInStudent');
 
-    Route::get('/sign-up', 'AuthController@getSignUpStudent')->name('signUpStudent');
-    Route::post('/sign-up', 'AuthController@postSignUpStudent');
 
     Route::get('/quizzes/completed/{id}', 'StudentController@getCompletedQuizzes')->name('completedQuizzes');
 
