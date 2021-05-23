@@ -52,34 +52,36 @@ use App\Http\Controllers\StudentController;
             <h2 class="page-name">Active quizzes</h2>
 
             <div class="row mt-3">
-                <?php
-                $activeQuizzes = StudentController::getActiveQuizzes(session()->get("studentId"));
-                $completedQuizzes = StudentController::getCompletedQuizzes(session()->get("studentId"));
-                foreach ($activeQuizzes as $activeQuiz){
-                ?>
-                <div class="col-lg-6">
-                    <a href="student/quizzes/active/<?=$activeQuiz->id?>">
-                        <div class="quiz">
-                            <div class="date d-flex align-items-center"></div>
-                            <div class="body mt-3 d-flex flex-column align-items-center">
-                                <div class="quiz-name ml-2"><?=$activeQuiz->title?></div>
-                                <div class="bottom-info"><?=$activeQuiz->created_at?></div>
+                <?php if (count($activeQuizzes) == 0) { ?>
+                    <h3 class="text-center page-name w-100">No active quizzes</h3>
+                <?php } ?>
+
+                <?php foreach ($activeQuizzes as $activeQuiz) { ?>
+                    <div class="col-lg-6">
+                        <a href="student/quizzes/active/<?=$activeQuiz->id?>">
+                            <div class="quiz">
+                                <div class="date d-flex align-items-center"></div>
+                                <div class="body mt-3 d-flex flex-column align-items-center">
+                                    <div class="quiz-name ml-2"><?=$activeQuiz->title?></div>
+                                    <div class="bottom-info"><?=$activeQuiz->created_at?></div>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                    <?php
-                    }?>
+                        </a>
+                    </div>
+                <?php } ?>
             </div>
         </div>
 
         <div class="container mt-5 student-quizzes">
             <h2 class="page-name">Completed quizzes</h2>
             <div class="row mt-3">
-                <?php foreach ($completedQuizzes as $completedQuiz){
-                ?>
+            <?php if (count($completedQuizzes) == 0) { ?>
+                <h3 class="text-center page-name w-100">No completed quizzes</h3>
+            <?php } ?>
+
+            <?php foreach ($completedQuizzes as $completedQuiz) { ?>
                 <div class="col-lg-6">
-                    <a href="student/quizzes/active/<?=$completedQuiz->id?>">
+                    <a href="student/quizzes/completed/<?=$completedQuiz->id?>">
                         <div class="quiz">
                             <div class="date d-flex align-items-center"></div>
                             <div class="body mt-3 d-flex flex-column align-items-center">
@@ -89,10 +91,8 @@ use App\Http\Controllers\StudentController;
                         </div>
                     </a>
                 </div>
-                <?php
-                }?>
+            <?php } ?>
             </div>
-
         </div>
 
 

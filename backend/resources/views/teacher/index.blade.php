@@ -45,7 +45,7 @@ use Illuminate\Support\Carbon;
         </div>
         <?php
         foreach ($quizzes as $quiz){
-        $formattedDate = Carbon::parse($quiz['created_at'])->format("M d");
+            $formattedDate = Carbon::parse($quiz['created_at'])->format("M d");
         ?>
         <a href="/teacher/quiz/<?=$quiz['id']?>">
             <div class="row quiz mt-3">

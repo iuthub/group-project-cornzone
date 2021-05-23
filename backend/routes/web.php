@@ -23,7 +23,11 @@ Route::get('/login', function () {
 Route::post('/', 'CheckRoleController@postRoleType');
 
 Route::group(['prefix' => 'teacher'], function () {
-    Route::get('', 'TeacherController@getTeacherIndex')->name('teacherIndex');
+//    Route::get('', 'TeacherController@getTeacherIndex')->name('teacherIndex');
+
+    Route::get('', function () {
+        return view('teacher.index');
+    })->name('teacherIndex');
 
     Route::get('/sign-in', 'AuthController@getSignInTeacher')->name('signInTeacher');
     Route::post('/sign-in', 'AuthController@postSignInTeacher');
@@ -48,9 +52,7 @@ Route::group(['prefix' => 'teacher'], function () {
 });
 
 Route::group(['prefix' => 'student'], function () {
-    Route::get('', function () {
-        return view('student.index');
-    })->name('studentIndex');
+    Route::get('', 'StudentController@getStudentIndex')->name('studentIndex');
 
     Route::get('/sign-in', 'AuthController@getSignInStudent')->name('signInStudent');
     Route::post('/sign-in', 'AuthController@postSignInStudent');
@@ -58,13 +60,10 @@ Route::group(['prefix' => 'student'], function () {
     Route::get('/sign-up', 'AuthController@getSignUpStudent')->name('signUpStudent');
     Route::post('/sign-up', 'AuthController@postSignUpStudent');
 
+    Route::get('/quizzes/completed/{id}', 'StudentController@getCompletedQuizzes')->name('completedQuizzes');
 
-    Route::get('/quizzes/completed/{id}', 'StudentController@getCompletedQuizzes')->name('getCompletedQuizzes');
-
-    Route::get('/quizzes/active/{id}', 'StudentController@getActiveQuizzes')->name('getActiveQuizzes');
-
-    Route::get('/take-quiz/{id}', 'QuizController@getTakeQuiz')->name('takeQuiz');
-    Route::post('/take-quiz/{id}', 'QuizController@postTakeQuiz');
+    Route::get('/quizzes/active/{id}', 'QuizController@getTakeQuiz')->name('takeQuiz');
+    Route::get('/quizzes/active/{id}', 'QuizController@postTakeQuiz');
 
     Route::post('/accept-quiz', 'QuizController@acceptQuiz')->name('acceptQuiz');
 
