@@ -12,11 +12,18 @@
     /login
 @endsection
 
-@section('content')
+@section("back-url")
+    /student
+@endsection
+
+@section('header')
     @include('partials.header')
+@endsection
+
+@section('content')
 
     <div id="take-quiz">
-        <div class="container">
+        <div>
             <div class="text-center my-5">
                 <h2 class="page-name">{{ $quiz->title }}</h2>
                 <p class='mt-2'>Minutes: {{ $quiz->duration }} | Questions: {{ count($questions) }} </p>

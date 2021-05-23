@@ -6,11 +6,18 @@
 @endsection
 
 @section('content')
-    <form method="post" class="h-100" action="{{route("signUpTeacher")}}" > 
+    <form method="post" class="h-100" action="{{route("signUpTeacher")}}" >
         @csrf
         <div class="container-fluid h-100">
             <div class="row justify-content-center align-content-center h-100">
                 <div class="col-3">
+                    <a class="back-button d-flex mb-3 j-self-start" href="/teacher/sign-in">
+                        <span class="back-icon">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        </span>
+                        Back
+                    </a>
+
                     <div class="logo"></div>
 
                     <div class="logo-title">

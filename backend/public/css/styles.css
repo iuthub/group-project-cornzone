@@ -14137,6 +14137,10 @@ input:-webkit-autofill {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
 }
 
+.j-self-start {
+  justify-self: start;
+}
+
 header {
   display: flex;
   background-color: #5d759b;
@@ -14870,8 +14874,31 @@ header .log-out {
 }
 
 #quiz-timer {
-  position: absolute;
+  position: fixed;
   right: 30px;
   bottom: 30px;
+}
+
+.back-button {
+  background-color: inherit;
+  border: none;
+  color: #8574a1;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.back-icon {
+  display: inline-block;
+  align-items: center;
+  color: #8574a1;
+  height: 100%;
+  padding-right: 5px;
+}
+
+.back-button:hover {
+  color: #6b5989;
 }
 

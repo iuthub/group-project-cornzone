@@ -10,6 +10,13 @@
         <div class="container-fluid h-100">
             <div class="row text-center justify-content-center align-content-center h-100">
                 <div class="col-3 pt-5">
+                    <a class="back-button d-flex mb-3 j-self-start" href="/">
+                        <span class="back-icon">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        </span>
+                        Back
+                    </a>
+
                     <div class="logo"></div>
 
                     <div class="logo-title">

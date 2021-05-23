@@ -218,6 +218,7 @@
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
     }
+
 }
 
 .student-quizzes {
@@ -302,7 +303,30 @@
 }
 
 #quiz-timer {
-    position: absolute;
+    position: fixed;
     right: 30px;
     bottom: 30px;
+}
+
+.back-button {
+    background-color: inherit;
+    border: none;
+    color: $violet;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.back-icon {
+    display: inline-block;
+    align-items: center;
+    color: $violet;
+    height: 100%;
+    padding-right: 5px;
+}
+
+.back-button:hover {
+    color: #6b5989;
 }
