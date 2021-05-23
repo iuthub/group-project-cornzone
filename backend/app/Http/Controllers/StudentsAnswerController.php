@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Student;
 use App\StudentAnswer;
 use App\SuperQuestion;
 use Illuminate\Http\Request;
@@ -17,15 +18,17 @@ class StudentsAnswerController extends Controller
     {
         $quizId = $request->route('quizId');
         $quiz = Quiz::find($quizId);
+        $students = [];
 
-        $students = DB::table('student_quiz')
+        $studentsQuizzes = DB::table('student_quiz')
             ->where("quiz_id", $quizId)
             ->get();
 
         $points = [];
 
-        foreach ($students as $student) {
-            $points[$student->id] = $this->calcStudentPointsForQuiz($student->id, $quizId);
+        foreach ($studentsQuizzes as $studentQuiz) {
+            array_push($students, Student::find($studentQuiz->student_id));
+            $points[$studentQuiz->student_id] = $this->calcStudentPointsForQuiz($studentQuiz->student_id, $quizId);
         }
 
         return view('teacher.list_of_students', [

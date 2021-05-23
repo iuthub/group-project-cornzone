@@ -55,7 +55,7 @@
 
                 @foreach($students as $student)
                     <tr>
-                        <td> {{ $student->first_name }} {{ $student->last_name }} </td>
+                        <td>{{ $student->first_name }} {{ $student->last_name }}</td>
                         <td>{{ $student->email }}</td>
                         <td>{{ $points[$student->id]["taken"] }} / {{ $points[$student->id]["total"] }}</td>
                         <td>
