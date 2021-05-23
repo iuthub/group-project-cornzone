@@ -19,7 +19,7 @@
         <div class="container">
             <div class="text-center my-5">
                 <h2 class="page-name">{{ $quiz->title }}</h2>
-                <p class='mt-2'>{{ $quiz->duration }} minutes | Questions {{ count($questions) }} </p>
+                <p class='mt-2'>Minutes: {{ $quiz->duration }} | Questions: {{ count($questions) }} </p>
 
                 <form id="quiz-form" method="post" action="{{ route("takeQuiz", ["id" => $quiz->id]) }}">
                     @csrf

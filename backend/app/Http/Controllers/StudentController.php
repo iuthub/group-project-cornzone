@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\MultipleQuestionAnswer;
+use App\MultipleQuestionOptionSet;
 use App\Quiz;
+use App\SimpleQuestionAnswer;
+use App\StudentAnswer;
+use App\SuperQuestion;
+use App\TrueFalseQuestionAnswer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -21,7 +27,55 @@ class StudentController extends Controller {
     }
 
     public function getCompletedQuizzes(Request $request) {
-        return view('student.completed_quiz');
+        $studentId = $request->session()->get("studentId");
+        $quizId = $request->route('id');
+
+        $quiz = Quiz::find($quizId);
+        $questions = SuperQuestion::where("quiz_id", $quizId)->get();
+
+        $questionsToSend = [];
+
+        $total = 0;
+        $taken = 0;
+
+        foreach ($questions as $question) {
+            $questionInfo = [];
+
+            $questionInfo["info"] = $question;
+
+            $questionInfo["studentAnswer"] = StudentAnswer::where("student_id", $studentId)
+                ->where("quiz_id", $quizId)
+                ->where("question_id", $question->id)
+                ->first();
+
+            $total += $question->points;
+
+            if ($questionInfo["studentAnswer"]->is_true == 1) {
+                $taken += $question->points;
+            }
+
+            if ($question->question_type_id == 1) {
+                $questionInfo["rightAnswer"] = SimpleQuestionAnswer::where("super_question_id", $question->id)->first();
+            }
+
+            if ($question->question_type_id == 2) {
+                $questionInfo["rightAnswer"] = TrueFalseQuestionAnswer::where("super_question_id", $question->id)->first();
+            }
+
+            if ($question->question_type_id == 3) {
+                $questionInfo["rightAnswer"] = MultipleQuestionAnswer::where("super_question_id", $question->id)->first();
+                $questionInfo["answerOptions"] = MultipleQuestionOptionSet::where("MQA_id", $questionInfo["rightAnswer"]->id)->get();
+            }
+
+            $questionsToSend[$question->id] = $questionInfo;
+        }
+
+        return view('student.completed_quiz', [
+            "quiz" => $quiz,
+            "questions" => $questionsToSend,
+            "total" => $total,
+            "taken" => $taken,
+        ]);
     }
 
     public static function fetchCompletedQuizzes($id): array {
