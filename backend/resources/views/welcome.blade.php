@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.welcome')
 
 @section('page-title')
     Welcome to Quizify

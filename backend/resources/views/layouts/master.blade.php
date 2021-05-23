@@ -29,7 +29,21 @@
         </div>
     </div>
 
-    @yield('content')
+    @yield('header')
+
+    <div class="container">
+        <div class="row mt-3 mb-5">
+            <a class="back-button" href="@yield('back-url')">
+                <span class="back-icon">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </span>
+                Back
+            </a>
+        </div>
+
+        @yield('content')
+    </div>
+
     <script src="{{ URL::to('js/app.js') }}">
         $.ajaxSetup({
             headers: {

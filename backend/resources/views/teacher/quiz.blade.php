@@ -12,10 +12,16 @@
     /login
 @endsection
 
-@section('content')
-    @include('partials.header')
+@section("back-url")
+    /teacher
+@endsection
 
-    <div id="read-quiz-page" class="container mt-3 mb-5">
+@section('header')
+    @include('partials.header')
+@endsection
+
+@section('content')
+    <div id="read-quiz-page" class="mt-3 mb-5">
         <div class="row">
             <div class="col">
                 <h2 class="page-name">Quiz 1</h2>

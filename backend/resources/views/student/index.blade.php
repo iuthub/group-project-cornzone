@@ -12,13 +12,15 @@
     /login
 @endsection
 
-<?php
-    use Illuminate\Support\Carbon;
-?>
+@section("back-url")
+    /student/sign-in
+@endsection
+
+@section('header')
+    @include('partials.header')
+@endsection
 
 @section('content')
-    @include('partials.header')
-
     <div id="student-index">
         <form method="post" action="{{ route("acceptQuiz") }}">
             @csrf
@@ -33,6 +35,8 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+
+
                         <div class="modal-body">
                             <h4 class="input-title mb-1">Quiz link</h4>
                             <input name="quizLink" type="text" class="app-input"
@@ -65,7 +69,7 @@
                                 <div class="date d-flex align-items-center"></div>
                                 <div class="body mt-3 d-flex flex-column align-items-center">
                                     <div class="quiz-name ml-2"><?=$activeQuiz->title?></div>
-                                    <div class="bottom-info">{{ Carbon::parse($activeQuiz->created_at)->format("M d")  }}</div>
+                                    <div class="bottom-info"><?=$activeQuiz->created_at?></div>
                                 </div>
                             </div>
                         </a>
@@ -88,7 +92,7 @@
                             <div class="date d-flex align-items-center"></div>
                             <div class="body mt-3 d-flex flex-column align-items-center">
                                 <div class="quiz-name ml-2"><?=$completedQuiz->title?></div>
-                                <div class="bottom-info">{{ Carbon::parse($completedQuiz->created_at)->format("M d")  }}</div>
+                                <div class="bottom-info"><?=$completedQuiz->created_at?></div>
                             </div>
                         </div>
                     </a>

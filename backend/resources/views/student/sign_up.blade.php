@@ -10,6 +10,13 @@
         <div class="container-fluid h-100">
             <div class="row justify-content-center align-content-center h-100">
                 <div class="col-3">
+                    <a class="back-button d-flex mb-3 j-self-start" href="/student/sign-in">
+                        <span class="back-icon">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        </span>
+                        Back
+                    </a>
+
                     <div class="logo"></div>
 
                     <div class="logo-title">
@@ -35,7 +42,7 @@
                     </div>
                     <div class="mt-3">
                         <input name="email" value="{{old('email')}}" id="email" class="app-input" type="text" placeholder="Email" required>
-                    </div> 
+                    </div>
                     <div class="mt-3">
                         <input name="password"  id="password" class="app-input" type="password" placeholder="Password"
                                required>

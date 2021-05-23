@@ -12,10 +12,16 @@
     /login
 @endsection
 
-@section('content')
-    @include('partials.header')
+@section("back-url")
+    /teacher/quiz/{{ $quiz->id }}
+@endsection
 
-    <div id="list-of-students" class="container mt-3 mb-4">
+@section('header')
+    @include('partials.header')
+@endsection
+
+@section('content')
+    <div id="list-of-students" class="mt-3 mb-4">
         <div class="row">
             <div class="col">
                 <h2 class="page-name">{{ $quiz->title }}</h2>
@@ -33,7 +39,7 @@
             </div>
         </div>
 
-        
+
         <table class="content-table">
             <thead>
             <tr>
@@ -44,8 +50,8 @@
             </tr>
 
             </thead>
-        
-        
+
+
         @foreach($students as $student)
             <tr>
                 <td> {{ $student->first_name }} {{ $student->last_name }} </td>
@@ -62,6 +68,7 @@
             </tr>
         @endforeach
         </table>
-        
+
     </div>
+
 @endsection

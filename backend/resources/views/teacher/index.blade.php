@@ -11,13 +11,20 @@
 @section("logout-url")
     /login
 @endsection
+
+@section("back-url")
+    /teacher/sign-in
+@endsection
+
+@section('header')
+    @include('partials.header')
+@endsection
+
 <?php  use App\Http\Controllers\QuizController;
 use Illuminate\Support\Carbon;
 ?>
 @section('content')
-    @include('partials.header')
-
-    <div id="teacher-quizzes" class="container mt-3">
+    <div id="teacher-quizzes" class="mt-3">
         <div class="modal fade" id="copy-link" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
