@@ -8,6 +8,8 @@
 
 ![image](https://raw.githubusercontent.com/iuthub/group-project-cornzone/master/backend/public/images/full_logo.png)
 
+[Live preview](http://quizify.tvclub.uz/)
+
 ## Installation
 
 The project is written with Laravel. To run you need php version at least 7.2.5 and MySQL database
