@@ -19,7 +19,10 @@ use Illuminate\Support\Facades\Redirect;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login', function () {
+Route::get('/login', function (\Illuminate\Http\Request $request) {
+    $request->session()->remove('studentId');
+    $request->session()->remove('teacherId');
+
     return view('login');
 });
 
@@ -51,8 +54,6 @@ Route::post('student/sign-up', 'AuthController@postSignUpStudent');
 
 Route::group(['prefix' => 'student','middleware'=>EnsureUserAuthorised::class], function () {
     Route::get('', 'StudentController@getStudentIndex')->name('studentIndex');
-
-
 
     Route::get('/quizzes/completed/{id}', 'StudentController@getCompletedQuizzes')->name('completedQuizzes');
 
