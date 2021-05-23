@@ -22,7 +22,7 @@
                     <div class="main-content_info">
                         <h1 class="font-weight-bold">Get Quizified <br> to stay exercised</h1>
                         <div class="mt-5 d-flex align-items-center">
-                            <a href="https://github.com/JRakhimov/quizify" class=" mr-5" target="_blank">
+                            <a href="https://github.com/iuthub/group-project-cornzone" class=" mr-5" target="_blank">
                                 <img class="main-content_icon" src="../images/github-icon.svg" alt="github-icon">
                             </a>
                             <a href="https://www.figma.com/file/F8xgI694OiBHHNAw9ABkTr/IP_Project?node-id=174%3A2" target="_blank">

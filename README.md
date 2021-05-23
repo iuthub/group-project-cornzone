@@ -6,6 +6,8 @@
 
 "Quizify" is tool to simplify education process for teachers and students. It's an online platform available for everyone, everywhere. No need to attend educational establishments, just get Quizified!
 
+![image](https://raw.githubusercontent.com/iuthub/group-project-cornzone/master/backend/public/images/full_logo.png)
+
 ## Installation
 
 The project is written with Laravel. To run you need php version at least 7.2.5 and MySQL database
