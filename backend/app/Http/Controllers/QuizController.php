@@ -6,6 +6,7 @@ use App\MultipleQuestionAnswer;
 use App\QuestionType;
 use App\Quiz;
 use App\SimpleQuestionAnswer;
+use App\Student;
 use App\StudentAnswer;
 use App\Subject;
 use App\SuperQuestion;
@@ -205,5 +206,59 @@ class QuizController extends Controller
         }
 
         return redirect('/student');
+    }
+
+    public function getStudentAnswers(Request $request) {
+        $studentId = $request->route('studentId');
+        $quizId = $request->route('quizId');
+
+        $quiz = Quiz::find($quizId);
+        $student = Student::find($studentId);
+        $questions = SuperQuestion::where("quiz_id", $quizId)->get();
+
+        $questionsToSend = [];
+
+        $total = 0;
+        $taken = 0;
+
+        foreach ($questions as $question) {
+            $questionInfo = [];
+
+            $questionInfo["info"] = $question;
+
+            $questionInfo["studentAnswer"] = StudentAnswer::where("student_id", $studentId)
+                ->where("quiz_id", $quizId)
+                ->where("question_id", $question->id)
+                ->first();
+
+            $total += $question->points;
+
+            if ($questionInfo["studentAnswer"]->is_true == 1) {
+                $taken += $question->points;
+            }
+
+            if ($question->question_type_id == 1) {
+                $questionInfo["rightAnswer"] = SimpleQuestionAnswer::where("super_question_id", $question->id)->first();
+            }
+
+            if ($question->question_type_id == 2) {
+                $questionInfo["rightAnswer"] = TrueFalseQuestionAnswer::where("super_question_id", $question->id)->first();
+            }
+
+            if ($question->question_type_id == 3) {
+                $questionInfo["rightAnswer"] = MultipleQuestionAnswer::where("super_question_id", $question->id)->first();
+                $questionInfo["answerOptions"] = MultipleQuestionOptionSet::where("MQA_id", $questionInfo["rightAnswer"]->id)->get();
+            }
+
+            $questionsToSend[$question->id] = $questionInfo;
+        }
+
+        return view('teacher.student_answers', [
+            "quiz" => $quiz,
+            "student" => $student,
+            "questions" => $questionsToSend,
+            "total" => $total,
+            "taken" => $taken,
+        ]);
     }
 }
