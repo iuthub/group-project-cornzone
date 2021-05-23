@@ -37160,19 +37160,17 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 var _require = __webpack_require__(/*! ./create_quiz */ "./resources/js/create_quiz/index.js"),
     onCreateQuizInit = _require.onCreateQuizInit;
 
-var createQuizPage = $("#create-quiz-page");
-var teacherIndexPage = $("#teacher-quizzes");
-var takeQuizPage = $("#take-quiz");
+var _require2 = __webpack_require__(/*! ./take_quiz */ "./resources/js/take_quiz/index.js"),
+    onTakeQuizInit = _require2.onTakeQuizInit;
+
+var createQuizPage = $("#create-quiz-page")[0];
+var teacherIndexPage = $("#teacher-quizzes")[0];
+var takeQuizPage = $("#take-quiz")[0];
 
 function showToast(message) {
   var toast = $(".toast");
@@ -37180,6 +37178,7 @@ function showToast(message) {
   toast.toast("show");
 }
 
+window.showToast = showToast;
 $(document).ready(function () {
   $(".toast").toast({
     delay: 4000,
@@ -37191,84 +37190,7 @@ $(document).ready(function () {
   }
 
   if (takeQuizPage != null) {
-    (function () {
-      var questionElements = $(".question-constructor");
-      var submitButton = $("#submit-quiz");
-      var answersInput = $("#answers-input");
-      var quizForm = $("#quiz-form");
-      var questionAnswers = {};
-      submitButton.on("click", function (e) {
-        if (Object.keys(questionAnswers).length !== questionElements.length) {
-          showToast("You haven't answered all the questions");
-        } else {
-          answersInput.val(JSON.stringify(questionAnswers));
-        }
-      });
-
-      var _iterator = _createForOfIteratorHelper(questionElements),
-          _step;
-
-      try {
-        var _loop = function _loop() {
-          var questionElement = _step.value;
-          var questionId = $(questionElement).attr("questionId");
-          var answerElements = $($(questionElement).children(".answers")[0]).children(".col-6").children(".answer");
-          var answerInput = $($(questionElement).children(".answers")[0]).children(".col-12").children(".answer")[0];
-
-          var _iterator2 = _createForOfIteratorHelper(answerElements),
-              _step2;
-
-          try {
-            var _loop2 = function _loop2() {
-              var answerElement = _step2.value;
-              var answer = $(answerElement);
-              answer.on("click", function (_) {
-                questionAnswers[questionId] = answer.text().trim();
-
-                var _iterator3 = _createForOfIteratorHelper(answer.parent().siblings()),
-                    _step3;
-
-                try {
-                  for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-                    var sibling = _step3.value;
-                    $(sibling).children(".answer").removeClass("highlight");
-                  }
-                } catch (err) {
-                  _iterator3.e(err);
-                } finally {
-                  _iterator3.f();
-                }
-
-                answer.addClass("highlight");
-              });
-            };
-
-            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-              _loop2();
-            }
-          } catch (err) {
-            _iterator2.e(err);
-          } finally {
-            _iterator2.f();
-          }
-
-          if (answerInput) {
-            $($(answerInput).children("input")[0]).on("change", function (e) {
-              questionAnswers[questionId] = e.target.value;
-              $(e.target).addClass("highlight");
-            });
-          }
-        };
-
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          _loop();
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-    })();
+    onTakeQuizInit();
   }
 
   if (teacherIndexPage != null) {
@@ -37276,12 +37198,12 @@ $(document).ready(function () {
       var copyButtons = $(".copy-button");
       var linkInput = $("#link-input");
 
-      var _iterator4 = _createForOfIteratorHelper(copyButtons),
-          _step4;
+      var _iterator = _createForOfIteratorHelper(copyButtons),
+          _step;
 
       try {
-        var _loop3 = function _loop3() {
-          var button = _step4.value;
+        var _loop = function _loop() {
+          var button = _step.value;
           $(button).on("click", function (e) {
             e.preventDefault();
             linkInput.val("https://quizify.uz/quizzes/".concat($(button).attr("quizId")));
@@ -37291,13 +37213,13 @@ $(document).ready(function () {
           });
         };
 
-        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-          _loop3();
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          _loop();
         }
       } catch (err) {
-        _iterator4.e(err);
+        _iterator.e(err);
       } finally {
-        _iterator4.f();
+        _iterator.f();
       }
     })();
   }
@@ -37619,6 +37541,205 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/take_quiz/index.js":
+/*!*****************************************!*\
+  !*** ./resources/js/take_quiz/index.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var _require = __webpack_require__(/*! ./timer */ "./resources/js/take_quiz/timer.js"),
+    quizTimerInit = _require.quizTimerInit;
+
+function onTakeQuizInit() {
+  var questionElements = $(".question-constructor");
+  var answersInput = $("#answers-input");
+  var submitButton = $("#submit-quiz");
+  var quizTimer = $("#quiz-timer");
+  var quizForm = $("#quiz-form");
+  var questionAnswers = {};
+  submitButton.on("click", function (e) {
+    if (Object.keys(questionAnswers).length !== questionElements.length) {
+      window.showToast("You haven't answered all the questions");
+    } else {
+      answersInput.val(JSON.stringify(questionAnswers));
+      quizForm.submit();
+    }
+  });
+
+  var _iterator = _createForOfIteratorHelper(questionElements),
+      _step;
+
+  try {
+    var _loop = function _loop() {
+      var questionElement = _step.value;
+      var questionId = $(questionElement).attr("questionId");
+      var answerElements = $($(questionElement).children(".answers")[0]).children(".col-6").children(".answer");
+      var answerInput = $($(questionElement).children(".answers")[0]).children(".col-12").children(".answer")[0];
+
+      var _iterator2 = _createForOfIteratorHelper(answerElements),
+          _step2;
+
+      try {
+        var _loop2 = function _loop2() {
+          var answerElement = _step2.value;
+          var answer = $(answerElement);
+          answer.on("click", function (_) {
+            questionAnswers[questionId] = answer.text().trim();
+
+            var _iterator3 = _createForOfIteratorHelper(answer.parent().siblings()),
+                _step3;
+
+            try {
+              for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                var sibling = _step3.value;
+                $(sibling).children(".answer").removeClass("highlight");
+              }
+            } catch (err) {
+              _iterator3.e(err);
+            } finally {
+              _iterator3.f();
+            }
+
+            answer.addClass("highlight");
+          });
+        };
+
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          _loop2();
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+
+      if (answerInput) {
+        $($(answerInput).children("input")[0]).on("change", function (e) {
+          questionAnswers[questionId] = e.target.value;
+          $(e.target).addClass("highlight");
+        });
+      }
+    };
+
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      _loop();
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  quizTimerInit(parseInt(quizTimer.attr("timeLimit")) * 60);
+}
+
+module.exports = {
+  onTakeQuizInit: onTakeQuizInit
+};
+
+/***/ }),
+
+/***/ "./resources/js/take_quiz/timer.js":
+/*!*****************************************!*\
+  !*** ./resources/js/take_quiz/timer.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function quizTimerInit(timeLimit) {
+  var FULL_DASH_ARRAY = 283;
+  var WARNING_THRESHOLD = timeLimit * 0.5; // need to be automatized
+
+  var ALERT_THRESHOLD = timeLimit * 0.25; // need to be automatized
+
+  var COLOR_CODES = {
+    info: {
+      color: "green"
+    },
+    warning: {
+      color: "yellow",
+      threshold: WARNING_THRESHOLD
+    },
+    alert: {
+      color: "red",
+      threshold: ALERT_THRESHOLD
+    }
+  };
+  var TIME_LIMIT = timeLimit;
+  var timePassed = 0;
+  var timeLeft = TIME_LIMIT;
+  var timerInterval = null;
+  var remainingPathColor = COLOR_CODES.info.color;
+  document.getElementById("countdown").innerHTML = "\n    <div class=\"base-timer\">\n      <svg class=\"base-timer__svg\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">\n        <g class=\"base-timer__circle\">\n          <circle class=\"base-timer__path-elapsed\" cx=\"50\" cy=\"50\" r=\"45\"></circle>\n          <path\n            id=\"base-timer-path-remaining\"\n            stroke-dasharray=\"283\"\n            class=\"base-timer__path-remaining ".concat(remainingPathColor, "\"\n            d=\"\n              M 50, 50\n              m -45, 0\n              a 45,45 0 1,0 90,0\n              a 45,45 0 1,0 -90,0\n            \"\n          ></path>\n        </g>\n      </svg>\n      <span id=\"base-timer-label\" class=\"base-timer__label\">").concat(formatTime(timeLeft), "</span>\n    </div>\n    ");
+  startTimer();
+
+  function onTimesUp() {
+    clearInterval(timerInterval);
+  }
+
+  function startTimer() {
+    timerInterval = setInterval(function () {
+      timePassed = timePassed += 1;
+      timeLeft = TIME_LIMIT - timePassed;
+      document.getElementById("base-timer-label").innerHTML = formatTime(timeLeft);
+      setCircleDasharray();
+      setRemainingPathColor(timeLeft);
+
+      if (timeLeft === 0) {
+        onTimesUp();
+      }
+    }, 1000);
+  }
+
+  function formatTime(time) {
+    var minutes = Math.floor(time / 60);
+    var seconds = time % 60;
+
+    if (seconds < 10) {
+      seconds = "0".concat(seconds);
+    }
+
+    return "".concat(minutes, ":").concat(seconds);
+  }
+
+  function setRemainingPathColor(timeLeft) {
+    var alert = COLOR_CODES.alert,
+        warning = COLOR_CODES.warning,
+        info = COLOR_CODES.info;
+
+    if (timeLeft <= alert.threshold) {
+      document.getElementById("base-timer-path-remaining").classList.remove(warning.color);
+      document.getElementById("base-timer-path-remaining").classList.add(alert.color);
+    } else if (timeLeft <= warning.threshold) {
+      document.getElementById("base-timer-path-remaining").classList.remove(info.color);
+      document.getElementById("base-timer-path-remaining").classList.add(warning.color);
+    }
+  }
+
+  function calculateTimeFraction() {
+    var rawTimeFraction = timeLeft / TIME_LIMIT;
+    return rawTimeFraction - 1 / TIME_LIMIT * (1 - rawTimeFraction);
+  }
+
+  function setCircleDasharray() {
+    var circleDasharray = "".concat((calculateTimeFraction() * FULL_DASH_ARRAY).toFixed(0), " 283");
+    document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", circleDasharray);
+  }
+}
+
+module.exports = {
+  quizTimerInit: quizTimerInit
+};
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -37637,8 +37758,8 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\inha\IP\group-project-cornzone\backend\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\inha\IP\group-project-cornzone\backend\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Development\Projects\Education\group-project-cornzone\backend\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Development\Projects\Education\group-project-cornzone\backend\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
