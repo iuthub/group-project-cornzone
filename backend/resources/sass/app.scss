@@ -1,7 +1,9 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Nunito");
 
-// Third party libs
+// Variables
+
+// Bootstrap
 @import "~bootstrap/scss/bootstrap";
 @import "~font-awesome/scss/font-awesome.scss";
 @import "~css-ripple-effect/dist/ripple.min.css";
@@ -12,14 +14,215 @@
 @import "inputs";
 @import "buttons";
 @import "shared";
-@import "colors";
 
-// Views
-@import "views/student_index";
-@import "views/auth";
-@import "views/main";
+.page-name {
+    color: $black;
+}
 
-#teacher-quizzes {
+.question-title {
+    position: relative;
+    border: 1px solid $green;
+    text-align: center;
+    vertical-align: middle;
+    min-height: 200px;
+
+    .question-input {
+        text-align: center;
+        padding: 0.4rem 0.9rem;
+        color: $black;
+        border-radius: $borderRadius;
+        border: none;
+        outline: none;
+        font-size: 20px;
+        width: 80%;
+        min-height: 60px;
+        overflow-y: hidden;
+    }
+
+    .question-input::placeholder {
+        color: $greyLight;
+    }
+
+    .question-number {
+        position: absolute;
+        left: -5px;
+        top: -5px;
+        padding: 2px 12px;
+        font-size: 22px;
+        background-color: $blue;
+        color: #fff;
+        outline: 8px solid #fff;
+        border-radius: 3px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .attach {
+        position: absolute;
+        right: -1px;
+        bottom: -1px;
+        padding: 4px 10px;
+        font-size: 22px;
+        background-color: $violet;
+        border-radius: $borderRadius 0 0 0;
+        color: #fff;
+    }
+}
+
+.question-answer-variant {
+    background-color: #f8f8f9;
+    position: relative;
+    min-height: 60px;
+    border-radius: $borderRadius;
+
+    .radio-btn {
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 0 10px;
+        background-color: $greyLight;
+        color: #fff;
+        height: 100%;
+        border-radius: $borderRadius 0 0 $borderRadius;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .radio-btn.checked {
+        background-color: $green;
+    }
+
+    .radio-btn:hover {
+        background-color: #00adb38f;
+    }
+
+    .radio-btn:focus,
+    .radio-btn:active {
+        background-color: $green;
+    }
+
+    .answer-input {
+        margin-left: 30px;
+        text-align: center;
+        padding: 0.4rem 0.9rem;
+        color: $black;
+        border-radius: $borderRadius;
+        border: none;
+        outline: none;
+        font-size: 20px;
+        width: 100%;
+        height: 100%;
+        min-height: 60px;
+        background-color: #f8f8f9;
+        overflow-y: hidden;
+    }
+
+    .answer-input::placeholder {
+        color: $greyLight;
+    }
+
+    .attach-btn {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 4px 8px;
+        background-color: $violet;
+        border-radius: 0 0 $borderRadius 0;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+
+        .icon-attachment-clip {
+            font-size: 1.2em;
+        }
+    }
+
+    button {
+        width: 3rem;
+    }
+}
+
+.answers {
+    .answer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: #a2a2a2;
+        font-weight: 500;
+        background-color: #f8f8f9;
+        position: relative;
+        min-height: 60px;
+        border-radius: $borderRadius;
+    }
+
+    .answer.correct {
+        color: white;
+        background: $green;
+    }
+}
+
+.auth-body {
+    .background {
+        //background-image: url("../images/auth_bg.png");
+        //background-position: center 56vh;
+        //background-repeat: no-repeat;
+        //height: 100vh;
+
+        background-image: url("../images/choose-role.jpg");
+        background-position: center center;
+        background-size: cover;
+        height: 100vh;
+    }
+
+    .logo {
+        width: 4.5rem;
+        height: 4.5rem;
+        border-radius: 50%;
+        background-image: url("../images/logo_180.png");
+        background-position: center center;
+        background-size: 100% 100%;
+        margin: 0 auto;
+    }
+
+    .logo-title h2 {
+        color: $black;
+        font-size: 2rem;
+        font-weight: 900;
+        text-align: center;
+    }
+
+    .sub-title h3 {
+        color: #939393;
+        font-weight: 500;
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .app-input, .app-select-option {
+        background: #fff;
+    }
+
+    .sub-title.errorSubtitle h3 {
+        color: $red;
+        font-weight: 400;
+    }
+
+    .login-submit {
+        button {
+            background-color: $blue;
+            width: 100%;
+            border: none;
+            outline: none;
+            color: white;
+            padding: 0.4rem 0.9rem;
+            border-radius: $borderRadius;
+        }
+    }
+}
+
+.teacher-quizzes {
     .quiz {
         .date {
             width: 100%;
@@ -80,7 +283,7 @@
                 position: absolute;
             }
 
-            .bottom-info {
+            .section {
                 color: #fff;
                 padding: 4px 10px;
                 position: absolute;
@@ -89,24 +292,83 @@
                 background-color: $green;
                 border-radius: $borderRadius 0 $borderRadius 0;
                 font-weight: 500;
-                cursor: pointer;
-
-                transition: background-color 150ms linear;
-                outline: none;
-                border: none;
-            }
-
-            .bottom-info:hover {
-                background-color: darken($green, 5%);
             }
         }
     }
 }
 
+.main {
+    background-image: url("../images/bg.jpg");
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+}
+.main-header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding-top: 30px;
+    &-wrapper {
+        padding-top: 30px;
+    }
+    &_logo {
+        font-size: 40px;
+    }
+    &_login-btn {
+        background-color: $violet;
+        border-radius: 10px;
+        padding: 10px 35px;
+        display: block;
+        border: none;
+        border-color: none;
+    }
+}
+.main-content_icon{
+    max-width: 60px;
+    height: auto;
+    display: block;
+}
+.happy-girl {
+    width: 600px;
+    height: auto;
+}
+.content-row {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.action-btn{
+    color: $blue-v2;
+    padding-bottom: 5px;
+    &:hover{
+        color:inherit;
+    }
+    span{
+        position: relative;
+    }
+    span::before{
+        position: absolute;
+        bottom:-5px;
+        width: 100%;
+        height: 1px;
+        right: 0;
+        left: 0;
+        content: '';
+        display: block;
+        border-bottom:1px dashed;
+    }
+}
 #create-quiz-page {
     .sub-title {
         font-size: 1.2rem;
         color: $greyDarker;
+    }
+
+    .input-title {
+        font-size: 1rem;
+        color: $black;
+        font-weight: 500;
     }
 }
 
@@ -115,34 +377,18 @@
         text-align: center;
     }
 
-    .quiz-info-left {
+    .quiz-info {
+        text-align: end;
+
         .date {
-            color: $black;
-            font-size: 1.1rem;
-            font-weight: 500;
+            color: $green;
+            font-size: 1.2rem;
+            font-weight: bolder;
         }
 
         .duration {
             color: $placeholderColor;
-            font-size: 0.95rem;
-        }
-    }
-
-    .quiz-info-right {
-        .points {
-            color: $black;
-            font-size: 1.1rem;
             font-weight: 500;
-        }
-
-        .results {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: $green;
-
-            i {
-                font-size: 0.7rem;
-            }
         }
     }
 }
@@ -168,13 +414,14 @@
     }
 
     .content-table {
+        font-family: rubik, roboto;
         border-collapse: collapse;
         margin: 25px 0;
         width: 100%;
     }
 
     .content-table thead tr {
-        color: $green;
+        color: #00ACB3;
         text-align: left;
         font-weight: bold;
         padding-bottom: 10px;
@@ -182,22 +429,21 @@
 
     .content-table tbody td {
         padding: 12px 15px;
-        background: #f4f4f4;
+        background: #F4F4F4;
     }
 
     .content-table tbody tr {
-        border-bottom: 10px solid #ffffff;
+        border-bottom: 10px solid #FFFFFF;
         padding-bottom: 15px;
     }
 
-    td,
-    th {
-        text-align: center;
+    td, th {
+        text-align:center;
         padding: 12px;
     }
 
     .app-raised-button:hover {
-        background-color: #6b5989;
+        background-color: #6B5989;
     }
 
     .button__icon {
@@ -218,85 +464,4 @@
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
     }
-}
-
-.student-quizzes {
-    .body {
-        background-color: #efeff0;
-        border-radius: $borderRadius;
-        position: relative;
-        height: 100px;
-        padding: 30px 35px;
-
-            .quiz-name {
-                color: $greyDarker;
-                font-weight: bold;
-                font-size: 1.4rem;
-            }
-
-        .section {
-            color: #fff;
-            padding: 4px 10px;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            background-color: $green;
-            border-radius: $borderRadius 0 $borderRadius 0;
-            font-weight: 500;
-        }
-    }
-}
-
-.base-timer {
-    position: relative;
-    width: 100px;
-    height: 100px;
-}
-
-.base-timer__svg {
-    transform: scaleX(-1);
-}
-
-.base-timer__circle {
-    fill: none;
-    stroke: none;
-}
-
-.base-timer__path-elapsed {
-    stroke-width: 10px;
-    stroke: #8574A1;
-}
-
-.base-timer__path-remaining {
-    stroke-width: 10px;
-    stroke-linecap: round;
-    transform: rotate(90deg);
-    transform-origin: center;
-    transition: 1s linear all;
-    fill-rule: nonzero;
-    stroke: currentColor;
-}
-
-.base-timer__path-remaining.green {
-    color: #6EC5CC;
-}
-
-.base-timer__path-remaining.yellow {
-    color: #F4EB9B;
-}
-
-.base-timer__path-remaining.red {
-    color: #F36A79;
-}
-
-.base-timer__label {
-    color: #5D759B;
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 26px;
 }

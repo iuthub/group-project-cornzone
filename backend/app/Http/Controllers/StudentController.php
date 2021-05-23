@@ -22,7 +22,7 @@ class StudentController extends Controller
             foreach ($quizzes as $quiz) {
                 $created_at = $quiz->created_at;
                 $expire = $created_at->addMinutes($quiz->duration);
-                if($expire < $current_time){
+                if($expire < $current_time || $student_quiz->is_completed== true){
                     array_push($quiz_array, $quiz);
                 }
             }
@@ -45,7 +45,7 @@ class StudentController extends Controller
             foreach ($quizzes as $quiz) {
                 $created_at = $quiz->created_at;
                 $expire = $created_at->addMinutes($quiz->duration);
-                if($expire > $current_time){
+                if($expire > $current_time || $student_quiz->is_completed==false){
                     array_push($quiz_array, $quiz);
                 }
             }
