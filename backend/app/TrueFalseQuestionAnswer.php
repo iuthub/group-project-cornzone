@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TrueFalseQuestionAnswer extends Model
 {
     protected $fillable = [
-        'answer'
+        'answer', 'super_question_id'
     ];
 
 

@@ -1,0 +1,28 @@
+#student-index {
+    .student-quizzes {
+        .body {
+            background-color: #efeff0;
+            border-radius: $borderRadius;
+            position: relative;
+            height: 100px;
+            padding: 30px 35px;
+
+            .quiz-name {
+                color: $greyDarker;
+                font-weight: bold;
+                font-size: 1.4rem;
+            }
+
+            .bottom-info {
+                color: #fff;
+                padding: 4px 10px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                background-color: $green;
+                border-radius: $borderRadius 0 $borderRadius 0;
+                font-weight: 500;
+            }
+        }
+    }
+}

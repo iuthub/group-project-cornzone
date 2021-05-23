@@ -22,7 +22,8 @@
             </div>
         </div>
 
-        <form id="create-quiz-form">
+        <form id="create-quiz-form" method="post" action="{{ route("quizCreate") }}">
+        @csrf
             <div class="pt-3">
                 <h3 class="sub-title mb-2">General quiz info</h3>
 
@@ -30,11 +31,19 @@
                     <div class="col-4">
                         <h4 class="input-title mb-1">Subject</h4>
 
-                        <label class="app-select-label">
-                            <select name="subject" class="app-select-option">
-                                <option value="Math" selected>Math</option>
-                            </select>
-                        </label>
+                        <input
+                            name="subject"
+                            type="text"
+                            class="app-input"
+                            placeholder="Subject"
+                            readonly
+                            value="{{$subjectTitle}}"
+                        >
+                    </div>
+
+                    <div class="col-4">
+                        <h4 class="input-title mb-1">Title</h4>
+                        <input name="title" type="text" class="app-input" placeholder="Title" required>
                     </div>
 
                     <div class="col-4">
@@ -61,7 +70,7 @@
                             <select class="app-select-option" id="type-selector">
                                 <option value="null" disabled selected>Choose the question type</option>
                                 <?php
-                                foreach (\App\QuestionType::all() as $type){
+                                foreach ($questionTypes as $type){
                                 ?>
                                 <option value="<?= $type->id ?>"> <?= $type->title ?></option>
                                 <?php

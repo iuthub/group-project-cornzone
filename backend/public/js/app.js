@@ -37154,6 +37154,12 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -37165,9 +37171,135 @@ var _require = __webpack_require__(/*! ./create_quiz */ "./resources/js/create_q
     onCreateQuizInit = _require.onCreateQuizInit;
 
 var createQuizPage = $("#create-quiz-page");
+var teacherIndexPage = $("#teacher-quizzes");
+var takeQuizPage = $("#take-quiz");
+
+function showToast(message) {
+  var toast = $(".toast");
+  $(toast.children(".toast-body")[0]).text(message);
+  toast.toast("show");
+}
+
 $(document).ready(function () {
+  $(".toast").toast({
+    delay: 4000,
+    autohide: true
+  });
+
   if (createQuizPage != null) {
     onCreateQuizInit();
+  }
+
+  if (takeQuizPage != null) {
+    (function () {
+      var questionElements = $(".question-constructor");
+      var submitButton = $("#submit-quiz");
+      var answersInput = $("#answers-input");
+      var quizForm = $("#quiz-form");
+      var questionAnswers = {};
+      submitButton.on("click", function (e) {
+        if (Object.keys(questionAnswers).length !== questionElements.length) {
+          showToast("You haven't answered all the questions");
+        } else {
+          answersInput.val(JSON.stringify(questionAnswers));
+        }
+      });
+
+      var _iterator = _createForOfIteratorHelper(questionElements),
+          _step;
+
+      try {
+        var _loop = function _loop() {
+          var questionElement = _step.value;
+          var questionId = $(questionElement).attr("questionId");
+          var answerElements = $($(questionElement).children(".answers")[0]).children(".col-6").children(".answer");
+          var answerInput = $($(questionElement).children(".answers")[0]).children(".col-12").children(".answer")[0];
+
+          var _iterator2 = _createForOfIteratorHelper(answerElements),
+              _step2;
+
+          try {
+            var _loop2 = function _loop2() {
+              var answerElement = _step2.value;
+              var answer = $(answerElement);
+              answer.on("click", function (_) {
+                questionAnswers[questionId] = answer.text().trim();
+
+                var _iterator3 = _createForOfIteratorHelper(answer.parent().siblings()),
+                    _step3;
+
+                try {
+                  for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                    var sibling = _step3.value;
+                    $(sibling).children(".answer").removeClass("highlight");
+                  }
+                } catch (err) {
+                  _iterator3.e(err);
+                } finally {
+                  _iterator3.f();
+                }
+
+                answer.addClass("highlight");
+              });
+            };
+
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              _loop2();
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
+          }
+
+          if (answerInput) {
+            $($(answerInput).children("input")[0]).on("change", function (e) {
+              questionAnswers[questionId] = e.target.value;
+              $(e.target).addClass("highlight");
+            });
+          }
+        };
+
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          _loop();
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    })();
+  }
+
+  if (teacherIndexPage != null) {
+    (function () {
+      var copyButtons = $(".copy-button");
+      var linkInput = $("#link-input");
+
+      var _iterator4 = _createForOfIteratorHelper(copyButtons),
+          _step4;
+
+      try {
+        var _loop3 = function _loop3() {
+          var button = _step4.value;
+          $(button).on("click", function (e) {
+            e.preventDefault();
+            linkInput.val("https://quizify.uz/quizzes/".concat($(button).attr("quizId")));
+            $('#copy-link').modal({
+              show: true
+            });
+          });
+        };
+
+        for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+          _loop3();
+        }
+      } catch (err) {
+        _iterator4.e(err);
+      } finally {
+        _iterator4.f();
+      }
+    })();
   }
 });
 var FULL_DASH_ARRAY = 283;
@@ -37542,16 +37674,16 @@ var createNewQuestion = function createNewQuestion(index, type) {
   $(questionTitle).append("\n       <textarea\n        rows=\"2\"\n        class=\"question-input\"\n        placeholder=\"Type a question...\"\n       ></textarea>\n    ");
   $(parent).append(questionTitle);
 
-  if (type === "text") {
+  if (type === "1") {
     $(parent).append(createAnswerVariant(new CreateAnswerOptions(true, false, "", false, false)));
   }
 
-  if (type === "true/false") {
+  if (type === "2") {
     $(parent).append(createAnswerVariant(new CreateAnswerOptions(true, false, "True", true, false)));
     $(parent).append(createAnswerVariant(new CreateAnswerOptions(false, true, "False", true, false)));
   }
 
-  if (type === "multiple") {
+  if (type === "3") {
     $(parent).append(createAddButton(parent, new CreateAnswerOptions(false, true, "", false, true)));
     $(parent).append(createAnswerVariant(new CreateAnswerOptions(true, false, "", false, false)));
   }
@@ -37583,8 +37715,8 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\User\IP_labs\group-project-cornzone\backend\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\User\IP_labs\group-project-cornzone\backend\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/Work/IP/group-project-cornzone/backend/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Work/IP/group-project-cornzone/backend/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
