@@ -68,3 +68,7 @@ Route::group(['prefix' => 'student'], function () {
 
     Route::post('/accept-quiz', 'QuizController@acceptQuiz')->name('acceptQuiz');
 });
+
+Route::get('/test', function () {
+    return view('student.timer');
+});
