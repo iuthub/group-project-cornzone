@@ -11,17 +11,19 @@
 |
 */
 
+use App\Quiz;
+
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/login', function () {
     return view('login');
 });
+
 Route::post('/', 'CheckRoleController@postRoleType');
+
 Route::group(['prefix' => 'teacher'], function () {
-    Route::get('', function () {
-        return view('teacher.index');
-    })->name('teacherIndex');
+    Route::get('', 'TeacherController@getTeacherIndex')->name('teacherIndex');
 
     Route::get('/sign-in', 'AuthController@getSignInTeacher')->name('signInTeacher');
     Route::post('/sign-in', 'AuthController@postSignInTeacher');
@@ -32,7 +34,7 @@ Route::group(['prefix' => 'teacher'], function () {
     Route::get('/quiz/create', 'QuizController@getCreateQuiz')->name('quizCreate');
     Route::post('/quiz/create', 'QuizController@postCreateQuiz');
 
-    Route::get('/quiz/1', function() {
+    Route::get('/quiz/1', function () {
         return dd(auth()->guard('teacher_web'));;
     });
 
@@ -52,16 +54,16 @@ Route::group(['prefix' => 'student'], function () {
     Route::get('/sign-in', 'AuthController@getSignInStudent')->name('signInStudent');
     Route::post('/sign-in', 'AuthController@postSignInStudent');
 
-    Route::get('/all-quizzes', function () {
-        return view('student.all-quizzes');
-    });
+    Route::get('/sign-up', 'AuthController@getSignUpStudent')->name('signUpStudent');
+    Route::post('/sign-up', 'AuthController@postSignUpStudent');
+
     Route::get('/quizzes/completed/1', function () {
         return view('student.completed_quiz');
     });
-    Route::get('/fill', function () {
-        return view('student.fill');
+
+    Route::get('/quizzes/active/1', function () {
+        return view('student.take_quiz');
     });
 
-    Route::get('/sign-up', 'AuthController@getSignUpStudent')->name('signUpStudent');
-    Route::post('/sign-up', 'AuthController@postSignUpStudent');
+    Route::post('/accept-quiz', 'QuizController@acceptQuiz')->name('acceptQuiz');
 });

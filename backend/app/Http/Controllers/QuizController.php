@@ -10,12 +10,20 @@ use App\Subject;
 use App\SuperQuestion;
 use App\Teacher;
 use App\TrueFalseQuestionAnswer;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Auth;
 use App\MultipleQuestionOptionSet;
+use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
+    public static function getQuestionsNumberByQuizId($id)
+    {
+        $questions = SuperQuestion::where("quiz_id", $id)->get();
+        return sizeof($questions);
+    }
+
     public function getCreateQuiz(Request $request)
     {
         $questionTypes = QuestionType::all();
@@ -30,7 +38,6 @@ class QuizController extends Controller
 
     public function postCreateQuiz(Request $request)
     {
-
         $teacher = Teacher::find($request->session()->get("teacherId"));
 
         $quiz = Quiz::create(array(
@@ -39,11 +46,15 @@ class QuizController extends Controller
             'teacher_id' => $teacher->id,
             'duration' => $request->input('duration'),
         ));
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9d9e65044006b9b485a0a5c890ecb8dc6adbca5a
 
         $questions = json_decode($request->input('questions'), true);
 
         foreach ($questions as $key => $value) {
+<<<<<<< HEAD
             print $value["type"] . "<br>";
             print $value["points"] . "<br>";
             print $value["questionText"] . "<br>";
@@ -53,6 +64,8 @@ class QuizController extends Controller
             }
 
 
+=======
+>>>>>>> 9d9e65044006b9b485a0a5c890ecb8dc6adbca5a
             $superQuestion = SuperQuestion::create(array(
                 'quiz_id' => $quiz->id,
                 'question' => $value["questionText"],
@@ -65,55 +78,53 @@ class QuizController extends Controller
                 $answers = '';
 
                 foreach ($value["answers"] as $answerKey => $answerValue) {
-                    print $answerValue["answerText"] . "     ";
-                    print $answerValue["isRightAnswer"] . "<br>";
-                    if ($answerValue["isRightAnswer"] == true)
-                    {
+                    if ($answerValue["isRightAnswer"] == true) {
                         $right_answer = $answerValue["answerText"];
                     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9d9e65044006b9b485a0a5c890ecb8dc6adbca5a
                 }
 
-                $mq_answer =  MultipleQuestionAnswer::create(array(
+                $mq_answer = MultipleQuestionAnswer::create(array(
                     'super_question_id' => $superQuestion->id,
                     'answer' => $right_answer,
                 ));
 
                 foreach ($value["answers"] as $answerKey => $answerValue) {
-         
-                MultipleQuestionOptionSet::create(array(
-                    'MQA_id' => $mq_answer->id,
-                    'text' => $answerValue["answerText"],
-                ));
+                    MultipleQuestionOptionSet::create(array(
+                        'MQA_id' => $mq_answer->id,
+                        'text' => $answerValue["answerText"],
+                    ));
                 }
-            }
-
-             else if (strtolower($value["type"]) == '2') {
-                $rightAnswer = '';
-
-                foreach ($value["answers"] as $answerKey => $answerValue) {
-                    print $answerValue["answerText"] . "     ";
-                    print $answerValue["isRightAnswer"] . "<br>";
-                    if ($answerValue['isRightAnswer'] == "1" || strtolower($answerValue['isRightAnswer']) == "true")
-                    {
-                        $rightAnswer = $answerValue["answerText"];
-                    }
-                }
-
-
+            } else if (strtolower($value["type"]) == '2') {
                 TrueFalseQuestionAnswer::create(array(
-                    'answer' => $answerValue["answerText"],
+                    'answer' => $value["answers"][0]["isRightAnswer"],
                     'super_question_id' => $superQuestion->id,
                 ));
-                }
-                
-                else if (strtolower($value["type"]) == '1') {
-
+            } else if (strtolower($value["type"]) == '1') {
                 SimpleQuestionAnswer::create(array(
-                    'answer' => $answerValue["answerText"],
+                    'answer' => $value["answers"][0]["answerText"],
                     'super_question_id' => $superQuestion->id,
                 ));
             }
         }
+
+        return redirect(route("teacherIndex"));
+    }
+
+    public function acceptQuiz(Request $request)
+    {
+        $quizId = substr($request->input('quizLink'), -1);
+
+        DB::table('student_quiz')->insertGetId([
+            "student_id" => $request->session()->get('studentId'),
+            "quiz_id" => $quizId,
+            "created_at" => Carbon::now()->toDateTime(),
+            "updated_at" => Carbon::now()->toDateTime(),
+        ]);
+
+        return view('student.index');
     }
 }
