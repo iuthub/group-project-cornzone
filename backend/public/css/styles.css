@@ -14869,3 +14869,9 @@ header .log-out {
   font-size: 26px;
 }
 
+#quiz-timer {
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+}
+
