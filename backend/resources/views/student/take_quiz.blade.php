@@ -80,5 +80,11 @@
                 </form>
             </div>
         </div>
+
+        <div id="quiz-timer" timeLimit="{{ $quiz->duration }}">
+            <div class="border-gradient border-gradient-green">
+                <p id="countdown"></p>
+            </div>
+        </div>
     </div>
 @endsection

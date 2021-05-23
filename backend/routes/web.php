@@ -63,12 +63,7 @@ Route::group(['prefix' => 'student'], function () {
     Route::get('/quizzes/completed/{id}', 'StudentController@getCompletedQuizzes')->name('completedQuizzes');
 
     Route::get('/quizzes/active/{id}', 'QuizController@getTakeQuiz')->name('takeQuiz');
-    Route::get('/quizzes/active/{id}', 'QuizController@postTakeQuiz');
+    Route::post('/quizzes/active/{id}', 'QuizController@postTakeQuiz');
 
     Route::post('/accept-quiz', 'QuizController@acceptQuiz')->name('acceptQuiz');
-
-});
-
-Route::get('/test', function () {
-    return view('student.timer');
 });
