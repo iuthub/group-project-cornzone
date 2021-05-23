@@ -49,7 +49,7 @@
 
             <div class="row mt-3">
                 <div class="col-lg-6">
-                    <a href="student/quizzes/active/1">
+                    <a href="student/take-quiz/1">
                         <div class="quiz">
                             <div class="date d-flex align-items-center"></div>
                             <div class="body mt-3 d-flex flex-column align-items-center">
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <a href="student/quizzes/active/1">
+                    <a href="student/take-quiz/1">
                         <div class="quiz">
                             <div class="date d-flex align-items-center"></div>
                             <div class="body mt-3 d-flex flex-column align-items-center">

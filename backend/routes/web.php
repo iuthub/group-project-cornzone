@@ -60,9 +60,8 @@ Route::group(['prefix' => 'student'], function () {
         return view('student.completed_quiz');
     });
 
-    Route::get('/quizzes/active/1', function () {
-        return view('student.take_quiz');
-    });
+    Route::get('/take-quiz/{id}', 'QuizController@getTakeQuiz')->name('takeQuiz');
+    Route::post('/take-quiz/{id}', 'QuizController@postTakeQuiz');
 
     Route::post('/accept-quiz', 'QuizController@acceptQuiz')->name('acceptQuiz');
 });

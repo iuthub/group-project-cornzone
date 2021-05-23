@@ -22,6 +22,7 @@ class CreateStudentAnswersTable extends Migration
             $table->unsignedBigInteger('quiz_id');
             $table->foreign('quiz_id')->references('id')->on('quizzes');
             $table->string('answer');
+            $table->boolean('is_true');
             $table->timestamps();
         });
     }
