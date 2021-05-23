@@ -59,7 +59,7 @@
                         <td>{{ $student->email }}</td>
                         <td>{{ $points[$student->id]["taken"] }} / {{ $points[$student->id]["total"] }}</td>
                         <td>
-                            <a href="/teacher/quiz/1/results/{{ $student->id }}" class="app-raised-button violet">
+                            <a href="/teacher/quiz/{{ $quiz->id }}/results/{{ $student->id }}" class="app-raised-button violet">
                                 See
                                 <span class="button__icon">
                                 <i class="fa fa-chevron-right" aria-hidden="true"></i>

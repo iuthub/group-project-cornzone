@@ -59,13 +59,19 @@
 
                         <?php if ($question["info"]->question_type_id == 2) { ?>
                             <div class="col-6 pb-2">
-                                <div class="answer {{ $question["studentAnswer"]->is_true == 1 ? 'correct' : 'incorrect' }}">
+                                <div class="answer
+{{ $question["studentAnswer"]->is_true == 1 && $question["studentAnswer"]->answer == "true" ? 'correct' : '' }}
+{{ $question["studentAnswer"]->is_true == 0 && $question["studentAnswer"]->answer == "true" ? 'incorrect' : '' }}
+                                ">
                                     True
                                 </div>
                             </div>
 
                             <div class="col-6 pb-2">
-                                <div class="answer {{ $question["studentAnswer"]->is_true == 1 ? 'incorrect' : 'correct' }}">
+                                <div class="answer
+{{ $question["studentAnswer"]->is_true == 1 && $question["studentAnswer"]->answer == "false" ? 'correct' : '' }}
+{{ $question["studentAnswer"]->is_true == 0 && $question["studentAnswer"]->answer == "false" ? 'incorrect' : '' }}
+                                ">
                                     False
                                 </div>
                             </div>
