@@ -37202,6 +37202,7 @@ $(document).ready(function () {
           showToast("You haven't answered all the questions");
         } else {
           answersInput.val(JSON.stringify(questionAnswers));
+          quizForm.submit();
         }
       });
 

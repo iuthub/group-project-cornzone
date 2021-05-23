@@ -6,6 +6,7 @@ use App\MultipleQuestionAnswer;
 use App\QuestionType;
 use App\Quiz;
 use App\SimpleQuestionAnswer;
+use App\StudentAnswer;
 use App\Subject;
 use App\SuperQuestion;
 use App\Teacher;
@@ -101,10 +102,109 @@ class QuizController extends Controller
         DB::table('student_quiz')->insertGetId([
             "student_id" => $request->session()->get('studentId'),
             "quiz_id" => $quizId,
+            "is_completed" => false,
             "created_at" => Carbon::now()->toDateTime(),
             "updated_at" => Carbon::now()->toDateTime(),
         ]);
 
-        return view('student.index');
+        return redirect('/student');
+    }
+
+    public function getTakeQuiz(Request $request) {
+        $quizId = $request->route('id');
+
+        $quiz = Quiz::find($quizId);
+        $questions = SuperQuestion::where("quiz_id", $quizId)->get();
+
+        $questionsToSend = [];
+
+        foreach ($questions as $question) {
+            $questionInfo = [];
+
+            $questionInfo["info"] = $question;
+
+            if ($question->question_type_id == 1) {
+                $questionInfo["answer"] = SimpleQuestionAnswer::where("super_question_id", $question->id)->first();
+            }
+
+            if ($question->question_type_id == 2) {
+                $questionInfo["answer"] = TrueFalseQuestionAnswer::where("super_question_id", $question->id)->first();
+            }
+
+            if ($question->question_type_id == 3) {
+                $answer = MultipleQuestionAnswer::where("super_question_id", $question->id)->first();
+                $questionInfo["answerOptions"] = MultipleQuestionOptionSet::where("MQA_id", $answer->id)->get();
+            }
+
+            $questionsToSend[$question->id] = $questionInfo;
+        }
+
+        return view('student.take_quiz', [
+            "quiz" => $quiz,
+            "questions" => $questionsToSend,
+        ]);
+    }
+
+    public function postTakeQuiz(Request $request) {
+        $studentAnswers = json_decode($request->input('studentAnswers'), true);
+        $studentId = $request->session()->get("studentId");
+        $quizId = $request->route('id');
+
+        $questions = SuperQuestion::where("quiz_id", $quizId)->get();
+
+        $studentQuiz = DB::table('student_quiz')
+            ->where("student_id", $request->session()->get('studentId'))
+            ->where("quiz_id", $quizId)
+            ->first();
+
+        if ($studentQuiz->is_completed == 1) {
+            return redirect('/student');
+        }
+
+        DB::table('student_quiz')->where('id', $studentQuiz->id)->update(["is_completed" => 1]);
+
+        foreach ($questions as $question) {
+            $studentAnswer = $studentAnswers[$question->id];
+
+            if ($question->question_type_id == 1) {
+                $answer = SimpleQuestionAnswer::where("super_question_id", $question->id)->first();
+
+                StudentAnswer::create([
+                    "student_id" => $studentId,
+                    "question_id" => $question->id,
+                    "quiz_id" => $quizId,
+                    "answer" => $studentAnswer,
+                    "is_true" => $answer->answer == $studentAnswer,
+                ]);
+            }
+
+            if ($question->question_type_id == 2) {
+                $answer = TrueFalseQuestionAnswer::where("super_question_id", $question->id)->first();
+                $answerText = $answer->answer == 0 ? "false" : "true";
+
+                StudentAnswer::create([
+                    "student_id" => $studentId,
+                    "question_id" => $question->id,
+                    "quiz_id" => $quizId,
+                    "answer" => strtolower($studentAnswer),
+                    "is_true" => $answerText == strtolower($studentAnswer),
+                ]);
+            }
+
+            if ($question->question_type_id == 3) {
+                $answer = MultipleQuestionAnswer::where("super_question_id", $question->id)->first();
+                $questionInfo["answerOptions"] = MultipleQuestionOptionSet::where("MQA_id", $answer->id)->get();
+
+                StudentAnswer::create([
+                    "student_id" => $studentId,
+                    "question_id" => $question->id,
+                    "quiz_id" => $quizId,
+                    "answer" => $studentAnswer,
+                    "is_true" => $answer->answer == $studentAnswer,
+                ]);
+            }
+        }
+
+        return redirect('/student');
     }
 }

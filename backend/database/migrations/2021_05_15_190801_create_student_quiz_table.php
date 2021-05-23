@@ -19,6 +19,7 @@ class CreateStudentQuizTable extends Migration
             $table->foreign('student_id')->references('id')->on('students');
             $table->unsignedBigInteger('quiz_id');
             $table->foreign('quiz_id')->references('id')->on('quizzes');
+            $table->boolean("is_completed");
             $table->timestamps();
         });
     }
