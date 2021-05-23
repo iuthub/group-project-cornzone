@@ -43,8 +43,11 @@ use Illuminate\Support\Carbon;
 
                         <div class="modal-body">
                             <h4 class="input-title mb-1">Quiz link</h4>
-                            <input name="quizLink" type="text" class="app-input"
-                                   placeholder="E.g.: https://quizify.uz/quizzes/1">
+                            <input
+                                name="quizLink"
+                                type="text"
+                                class="app-input"
+                                placeholder="E.g.: {{ env("QUIZ_LINK_TEMPLATE") }}/1">
 
                             <p class="app-input-message mt-1">
                                 Contact your teacher to get a link to the quiz

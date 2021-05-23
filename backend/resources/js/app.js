@@ -34,7 +34,7 @@ $(document).ready(function () {
             $(button).on("click", function (e) {
                 e.preventDefault();
 
-                linkInput.val(`https://quizify.uz/quizzes/${$(button).attr("quizId")}`)
+                linkInput.val($(button).attr("quizLink"))
 
                 $('#copy-link').modal({ show: true });
             });

@@ -24,7 +24,7 @@
 use Illuminate\Support\Carbon;
 ?>
 @section('content')
-    <div id="teacher-quizzes" class="mt-3">
+    <div id="teacher-quizzes" class="mt-3 mb-5">
         <div class="modal fade" id="copy-link" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -37,7 +37,7 @@ use Illuminate\Support\Carbon;
                     </div>
                     <div class="modal-body">
                         <h4 class="input-title mb-1">Quiz link</h4>
-                        <input id="link-input" type="text" class="app-input" placeholder="https://quizify.uz/quizzes/1" readonly>
+                        <input id="link-input" type="text" class="app-input" readonly>
 
                         <p class="app-input-message mt-1">
                             Share this link with your students
@@ -50,6 +50,11 @@ use Illuminate\Support\Carbon;
         <div class="row page-name">
             <h2>All Quizzes</h2>
         </div>
+
+        <?php if (count($quizzes) == 0) { ?>
+        <h3 class="text-center page-name w-100">You have not created quizzes yet</h3>
+        <?php } ?>
+
         <?php
         foreach ($quizzes as $quiz) {
             $formattedDate = Carbon::parse($quiz['created_at'])->format("M d");
@@ -95,7 +100,7 @@ use Illuminate\Support\Carbon;
                             limit: <?=$quiz['duration']?>m
                         </div>
 
-                        <button quizId="{{ $quiz['id'] }}" class="bottom-info copy-button">
+                        <button quizLink="{{ env("QUIZ_LINK_TEMPLATE").'/'.$quiz['id'] }}" class="bottom-info copy-button">
                             <i class="fa fa-link" aria-hidden="true"></i>
                             Copy link
                         </button>

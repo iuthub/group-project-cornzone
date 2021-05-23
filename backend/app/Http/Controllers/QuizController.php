@@ -105,9 +105,26 @@ class QuizController extends Controller
         return redirect(route("teacherIndex"));
     }
 
-    public function acceptQuiz(Request $request)
-    {
-        $quizId = substr($request->input('quizLink'), -1);
+    public function acceptQuiz(Request $request) {
+        if (preg_match("/\/quizzes\/\d+/", $request->input('quizLink')) == 0) {
+            return redirect('/student');
+        }
+
+        $quizId = explode("/quizzes/", $request->input('quizLink'))[1];
+        $quiz = Quiz::find($quizId);
+
+        if (is_null($quiz)) {
+            return redirect('/student');
+        }
+
+        $studentQuiz = DB::table('student_quiz')
+            ->where("student_id", $request->session()->get('studentId'))
+            ->where("quiz_id", $quizId)
+            ->first();
+
+        if (!is_null($studentQuiz)) {
+            return redirect('/student');
+        }
 
         DB::table('student_quiz')->insertGetId([
             "student_id" => $request->session()->get('studentId'),

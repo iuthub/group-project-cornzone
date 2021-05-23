@@ -49,7 +49,7 @@ function onCreateQuizInit() {
             }
 
             typeSelector.val("null")
-            questionPoints.val("");
+            questionPoints.val("1");
             questionsElement.show();
         }
     })
@@ -57,6 +57,11 @@ function onCreateQuizInit() {
     createQuizForm.submit(function (e) {
         if (!formCalculated) {
             e.preventDefault();
+
+            if (questions.length === 0) {
+                window.showToast("You have not added questions to the quiz");
+                return;
+            }
 
             const _questions = [];
 

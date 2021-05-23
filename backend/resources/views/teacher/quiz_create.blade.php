@@ -89,7 +89,7 @@
                         <h4 class="input-title mb-1">Points</h4>
 
                         <div class="d-flex">
-                            <input type="number" class="app-input" placeholder="1" id="question-points">
+                            <input type="number" class="app-input" placeholder="Points" value="1" id="question-points">
                         </div>
                     </div>
 
