@@ -11,34 +11,41 @@ use App\MultipleQestionOptionSet;
 use App\SimpleQuestionAnswer;
 use App\TrueFalseQuestionAnswer;
 use App\SuperQuestion;
+use Carbon\Carbon;
 
 
 class StudentsAnswerController extends Controller
 {
-    public function getStudentsList()
-    {
+    public function getStudentsList(Request $request)
+    {   
+        $quiz_id = $request->route('quiz_id');
+        $quiz = Quiz::find($quiz_id)->first();
         $students = Student::all();
         return view('teacher.list_of_students', [
             'students' => $students,
+            'quiz' => $quiz,
+            'created_at' => Carbon::parse($quiz['created_at'])->format('d.m.Y'),
         ]);
     }
 
     public function getStudentsAnswer(Request $request)
     {   
 
-        $student_id = $request->route('id');
+        $student_id = $request->route('student_id');
+        $quiz_id = $request->route('quiz_id');
+        #$student_id[2] выводит номер айди
         $students = Student::find($student_id[2])->first();
         $answers = StudentAnswer::where('student_id', $student_id[2])->get();
 
-        $quiz_id = 1;
-        foreach ($answers as $answer => $answerValue) {
-            $quiz_id = $answerValue['quiz_id'];
-        }
+        // $quiz_id = 1;
+        // foreach ($answers as $answer => $answerValue) {
+        //     $quiz_id = $answerValue['quiz_id'];
+        // }
         $quiz = Quiz::find($quiz_id)->first();
         dd($quiz_id);
         $super_question_answer = SuperQuestion::where('quiz_id', $quiz_id)->get();
         foreach ($super_question_answer as $answer => $answerValue) {
-            $multiple_question_answer_id = 1;
+            $multiple_question_answer_id = [];
             $simple_question_answer_id = [];
             $true_false_question_answer_id = [];
 

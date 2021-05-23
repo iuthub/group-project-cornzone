@@ -46,15 +46,10 @@ class QuizController extends Controller
             'teacher_id' => $teacher->id,
             'duration' => $request->input('duration'),
         ));
-<<<<<<< HEAD
-
-=======
->>>>>>> 9d9e65044006b9b485a0a5c890ecb8dc6adbca5a
 
         $questions = json_decode($request->input('questions'), true);
 
         foreach ($questions as $key => $value) {
-<<<<<<< HEAD
             print $value["type"] . "<br>";
             print $value["points"] . "<br>";
             print $value["questionText"] . "<br>";
@@ -64,8 +59,6 @@ class QuizController extends Controller
             }
 
 
-=======
->>>>>>> 9d9e65044006b9b485a0a5c890ecb8dc6adbca5a
             $superQuestion = SuperQuestion::create(array(
                 'quiz_id' => $quiz->id,
                 'question' => $value["questionText"],
@@ -81,10 +74,6 @@ class QuizController extends Controller
                     if ($answerValue["isRightAnswer"] == true) {
                         $right_answer = $answerValue["answerText"];
                     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 9d9e65044006b9b485a0a5c890ecb8dc6adbca5a
                 }
 
                 $mq_answer = MultipleQuestionAnswer::create(array(

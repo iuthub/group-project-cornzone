@@ -38,8 +38,8 @@ Route::group(['prefix' => 'teacher'], function () {
         return dd(auth()->guard('teacher_web'));;
     });
 
-    Route::get('/quiz/1/results', 'StudentsAnswerController@getStudentsList');
-    Route::get('/quiz/1/results/{id}', 'StudentsAnswerController@getStudentsAnswer');
+    Route::get('/quiz/{quiz_id}/results', 'StudentsAnswerController@getStudentsList');
+    Route::get('/quiz/{quiz_id}/results/{student_id}', 'StudentsAnswerController@getStudentsAnswer');
 
     Route::get('/quiz/1/results/1', function () {
         return view('teacher.students_answer');

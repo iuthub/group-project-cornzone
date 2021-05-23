@@ -18,18 +18,18 @@
     <div id="list-of-students" class="container mt-3 mb-4">
         <div class="row">
             <div class="col">
-                <h2 class="page-name">Quiz 1</h2>
+                <h2 class="page-name">{{ $quiz->title }}</h2>
 
-                <h5 class="page-sub-title text-center mt-1">Some text (Quiz title)</h5>
+                {{-- <h5 class="page-sub-title text-center mt-1">{{ $quiz->title }}</h5> --}}
             </div>
         </div>
 
         <div class="quiz-info">
             <div class="date">
-                15.05.2021
+                {{ $created_at }}
             </div>
             <div class="duration">
-                10 minutes
+                {{ $quiz->duration }} minutes
             </div>
         </div>
 
