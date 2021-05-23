@@ -23,11 +23,7 @@ Route::get('/login', function () {
 Route::post('/', 'CheckRoleController@postRoleType');
 
 Route::group(['prefix' => 'teacher'], function () {
-//    Route::get('', 'TeacherController@getTeacherIndex')->name('teacherIndex');
-
-    Route::get('', function () {
-        return view('teacher.index');
-    })->name('teacherIndex');
+    Route::get('', 'TeacherController@getTeacherIndex')->name('teacherIndex');
 
     Route::get('/sign-in', 'AuthController@getSignInTeacher')->name('signInTeacher');
     Route::post('/sign-in', 'AuthController@postSignInTeacher');
@@ -38,8 +34,8 @@ Route::group(['prefix' => 'teacher'], function () {
     Route::get('/quiz/create', 'QuizController@getCreateQuiz')->name('quizCreate');
     Route::post('/quiz/create', 'QuizController@postCreateQuiz');
 
-    Route::get('/quiz/1', function () {
-        return dd(auth()->guard('teacher_web'));;
+    Route::get('/quiz/{id}', function () {
+        return view('teacher.quiz');
     });
 
     Route::get('/quiz/1/results', function () {

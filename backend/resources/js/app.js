@@ -1,17 +1,10 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
 const { onCreateQuizInit } = require('./create_quiz');
 const { onTakeQuizInit } = require('./take_quiz');
 
-const createQuizPage = $("#create-quiz-page");
-const teacherIndexPage = $("#teacher-quizzes");
-const takeQuizPage = $("#take-quiz");
+const createQuizPage = $("#create-quiz-page")[0];
+const teacherIndexPage = $("#teacher-quizzes")[0];
+const takeQuizPage = $("#take-quiz")[0];
 
 function showToast(message) {
     const toast = $(".toast");

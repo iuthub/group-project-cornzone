@@ -44,14 +44,14 @@ use Illuminate\Support\Carbon;
             <h2>All Quizzes</h2>
         </div>
         <?php
-        foreach ($quizzes as $quiz){
+        foreach ($quizzes as $quiz) {
             $formattedDate = Carbon::parse($quiz['created_at'])->format("M d");
         ?>
-        <a href="/teacher/quiz/<?=$quiz['id']?>">
             <div class="row quiz mt-3">
                 <?php
                 $currentQuizIndex = array_search($quiz, $quizzes);
                 $needToDisplay = true;
+
                 if ($currentQuizIndex > 0) {
                     $previousQuizIndex = $currentQuizIndex - 1;
                     $previousQuiz = $quizzes[$previousQuizIndex];
@@ -61,7 +61,7 @@ use Illuminate\Support\Carbon;
 
                     $needToDisplay = $prevQuizDate != $currQuizDate;
                 }
-                if ($needToDisplay){
+                if ($needToDisplay) {
                 ?>
                 <div class="date d-flex align-items-center">
                     <div class="col-auto">
@@ -73,27 +73,28 @@ use Illuminate\Support\Carbon;
                 <?php
                 }
                 ?>
-                <div class="body mt-3 d-flex flex-column align-items-center">
-                    <div class="blue-decor"></div>
+                <a href="/teacher/quiz/{{ $quiz['id'] }}" class="w-100">
+                    <div class="body mt-3 d-flex flex-column align-items-center">
+                        <div class="blue-decor"></div>
 
-                    <div class="col top d-flex align-items-center">
-                        <div class="quiz-number mr-2">Quiz <?=$quiz['id']?></div>
-                        <div class="line"></div>
-                        <div class="quiz-name ml-2"><?=$quiz['title']?></div>
+                        <div class="col top d-flex align-items-center">
+                            <div class="quiz-number mr-2">Quiz <?=$quiz['id']?></div>
+                            <div class="line"></div>
+                            <div class="quiz-name ml-2"><?=$quiz['title']?></div>
+                        </div>
+
+                        <div class="col bottom">Questions: <?= QuizController::getQuestionsNumberByQuizId($quiz['id'])?>,
+                            Time
+                            limit: <?=$quiz['duration']?>m
+                        </div>
+
+                        <button quizId="{{ $quiz['id'] }}" class="bottom-info copy-button">
+                            <i class="fa fa-link" aria-hidden="true"></i>
+                            Copy link
+                        </button>
                     </div>
-
-                    <div class="col bottom">Questions: <?= QuizController::getQuestionsNumberByQuizId($quiz['id'])?>,
-                        Time
-                        limit: <?=$quiz['duration']?>m
-                    </div>
-
-                    <button quizId="<?= $quiz['id']?>" class="bottom-info copy-button"><i class="fa fa-link"
-                                                                                          aria-hidden="true"></i>
-                        Copy link
-                    </button>
-                </div>
+                </a>
             </div>
-        </a>
         <?php }?>
     </div>
 

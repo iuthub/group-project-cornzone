@@ -37160,11 +37160,6 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 var _require = __webpack_require__(/*! ./create_quiz */ "./resources/js/create_quiz/index.js"),
@@ -37173,9 +37168,9 @@ var _require = __webpack_require__(/*! ./create_quiz */ "./resources/js/create_q
 var _require2 = __webpack_require__(/*! ./take_quiz */ "./resources/js/take_quiz/index.js"),
     onTakeQuizInit = _require2.onTakeQuizInit;
 
-var createQuizPage = $("#create-quiz-page");
-var teacherIndexPage = $("#teacher-quizzes");
-var takeQuizPage = $("#take-quiz");
+var createQuizPage = $("#create-quiz-page")[0];
+var teacherIndexPage = $("#teacher-quizzes")[0];
+var takeQuizPage = $("#take-quiz")[0];
 
 function showToast(message) {
   var toast = $(".toast");
@@ -37682,7 +37677,7 @@ function quizTimerInit(timeLimit) {
   var timeLeft = TIME_LIMIT;
   var timerInterval = null;
   var remainingPathColor = COLOR_CODES.info.color;
-  document.getElementById("countdown").innerHTML = "\n<div class=\"base-timer\">\n  <svg class=\"base-timer__svg\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">\n    <g class=\"base-timer__circle\">\n      <circle class=\"base-timer__path-elapsed\" cx=\"50\" cy=\"50\" r=\"45\"></circle>\n      <path\n        id=\"base-timer-path-remaining\"\n        stroke-dasharray=\"283\"\n        class=\"base-timer__path-remaining ".concat(remainingPathColor, "\"\n        d=\"\n          M 50, 50\n          m -45, 0\n          a 45,45 0 1,0 90,0\n          a 45,45 0 1,0 -90,0\n        \"\n      ></path>\n    </g>\n  </svg>\n  <span id=\"base-timer-label\" class=\"base-timer__label\">").concat(formatTime(timeLeft), "</span>\n</div>\n");
+  document.getElementById("countdown").innerHTML = "\n    <div class=\"base-timer\">\n      <svg class=\"base-timer__svg\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">\n        <g class=\"base-timer__circle\">\n          <circle class=\"base-timer__path-elapsed\" cx=\"50\" cy=\"50\" r=\"45\"></circle>\n          <path\n            id=\"base-timer-path-remaining\"\n            stroke-dasharray=\"283\"\n            class=\"base-timer__path-remaining ".concat(remainingPathColor, "\"\n            d=\"\n              M 50, 50\n              m -45, 0\n              a 45,45 0 1,0 90,0\n              a 45,45 0 1,0 -90,0\n            \"\n          ></path>\n        </g>\n      </svg>\n      <span id=\"base-timer-label\" class=\"base-timer__label\">").concat(formatTime(timeLeft), "</span>\n    </div>\n    ");
   startTimer();
 
   function onTimesUp() {
@@ -37763,8 +37758,8 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\User\IP_labs\group-project-cornzone\backend\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\User\IP_labs\group-project-cornzone\backend\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Development\Projects\Education\group-project-cornzone\backend\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Development\Projects\Education\group-project-cornzone\backend\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
