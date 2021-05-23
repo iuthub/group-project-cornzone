@@ -37303,6 +37303,84 @@ $(document).ready(function () {
     })();
   }
 });
+var FULL_DASH_ARRAY = 283;
+var WARNING_THRESHOLD = 10; // need to be automatized
+
+var ALERT_THRESHOLD = 5; // need to be automatized
+
+var COLOR_CODES = {
+  info: {
+    color: "green"
+  },
+  warning: {
+    color: "yellow",
+    threshold: WARNING_THRESHOLD
+  },
+  alert: {
+    color: "red",
+    threshold: ALERT_THRESHOLD
+  }
+};
+var TIME_LIMIT = 20;
+var timePassed = 0;
+var timeLeft = TIME_LIMIT;
+var timerInterval = null;
+var remainingPathColor = COLOR_CODES.info.color;
+document.getElementById("countdown").innerHTML = "\n<div class=\"base-timer\">\n  <svg class=\"base-timer__svg\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">\n    <g class=\"base-timer__circle\">\n      <circle class=\"base-timer__path-elapsed\" cx=\"50\" cy=\"50\" r=\"45\"></circle>\n      <path\n        id=\"base-timer-path-remaining\"\n        stroke-dasharray=\"283\"\n        class=\"base-timer__path-remaining ".concat(remainingPathColor, "\"\n        d=\"\n          M 50, 50\n          m -45, 0\n          a 45,45 0 1,0 90,0\n          a 45,45 0 1,0 -90,0\n        \"\n      ></path>\n    </g>\n  </svg>\n  <span id=\"base-timer-label\" class=\"base-timer__label\">\n").concat(formatTime(timeLeft), "\n</span>\n</div>\n");
+startTimer();
+
+function onTimesUp() {
+  clearInterval(timerInterval);
+}
+
+function startTimer() {
+  timerInterval = setInterval(function () {
+    timePassed = timePassed += 1;
+    timeLeft = TIME_LIMIT - timePassed;
+    document.getElementById("base-timer-label").innerHTML = formatTime(timeLeft);
+    setCircleDasharray();
+    setRemainingPathColor(timeLeft);
+
+    if (timeLeft === 0) {
+      onTimesUp();
+    }
+  }, 1000);
+}
+
+function formatTime(time) {
+  var minutes = Math.floor(time / 60);
+  var seconds = time % 60;
+
+  if (seconds < 10) {
+    seconds = "0".concat(seconds);
+  }
+
+  return "".concat(minutes, ":").concat(seconds);
+}
+
+function setRemainingPathColor(timeLeft) {
+  var alert = COLOR_CODES.alert,
+      warning = COLOR_CODES.warning,
+      info = COLOR_CODES.info;
+
+  if (timeLeft <= alert.threshold) {
+    document.getElementById("base-timer-path-remaining").classList.remove(warning.color);
+    document.getElementById("base-timer-path-remaining").classList.add(alert.color);
+  } else if (timeLeft <= warning.threshold) {
+    document.getElementById("base-timer-path-remaining").classList.remove(info.color);
+    document.getElementById("base-timer-path-remaining").classList.add(warning.color);
+  }
+}
+
+function calculateTimeFraction() {
+  var rawTimeFraction = timeLeft / TIME_LIMIT;
+  return rawTimeFraction - 1 / TIME_LIMIT * (1 - rawTimeFraction);
+}
+
+function setCircleDasharray() {
+  var circleDasharray = "".concat((calculateTimeFraction() * FULL_DASH_ARRAY).toFixed(0), " 283");
+  document.getElementById("base-timer-path-remaining").setAttribute("stroke-dasharray", circleDasharray);
+}
 
 /***/ }),
 
@@ -37638,8 +37716,8 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Development\Projects\Education\group-project-cornzone\backend\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Development\Projects\Education\group-project-cornzone\backend\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/Work/IP/group-project-cornzone/backend/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/Work/IP/group-project-cornzone/backend/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

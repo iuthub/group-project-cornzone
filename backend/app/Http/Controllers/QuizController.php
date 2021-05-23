@@ -19,6 +19,12 @@ use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
+    public static function getQuestionsNumberByQuizId($id)
+    {
+        $questions = SuperQuestion::where("quiz_id", $id)->get();
+        return sizeof($questions);
+    }
+
     public function getCreateQuiz(Request $request)
     {
         $questionTypes = QuestionType::all();
@@ -31,7 +37,8 @@ class QuizController extends Controller
         ]);
     }
 
-    public function postCreateQuiz(Request $request) {
+    public function postCreateQuiz(Request $request)
+    {
         $teacher = Teacher::find($request->session()->get("teacherId"));
 
         $quiz = Quiz::create(array(
@@ -61,7 +68,7 @@ class QuizController extends Controller
                     }
                 }
 
-                $mq_answer =  MultipleQuestionAnswer::create(array(
+                $mq_answer = MultipleQuestionAnswer::create(array(
                     'super_question_id' => $superQuestion->id,
                     'answer' => $right_answer,
                 ));
@@ -72,16 +79,12 @@ class QuizController extends Controller
                         'text' => $answerValue["answerText"],
                     ));
                 }
-            }
-
-             else if (strtolower($value["type"]) == '2') {
-                 TrueFalseQuestionAnswer::create(array(
+            } else if (strtolower($value["type"]) == '2') {
+                TrueFalseQuestionAnswer::create(array(
                     'answer' => $value["answers"][0]["isRightAnswer"],
                     'super_question_id' => $superQuestion->id,
                 ));
-            }
-
-            else if (strtolower($value["type"]) == '1') {
+            } else if (strtolower($value["type"]) == '1') {
                 SimpleQuestionAnswer::create(array(
                     'answer' => $value["answers"][0]["answerText"],
                     'super_question_id' => $superQuestion->id,
@@ -89,10 +92,11 @@ class QuizController extends Controller
             }
         }
 
-        return redirect('/teacher');
+        return redirect(route("teacherIndex"));
     }
 
-    public function acceptQuiz(Request $request) {
+    public function acceptQuiz(Request $request)
+    {
         $quizId = substr($request->input('quizLink'), -1);
 
         DB::table('student_quiz')->insertGetId([
