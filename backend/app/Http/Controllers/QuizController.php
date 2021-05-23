@@ -33,30 +33,15 @@ class QuizController extends Controller
 
         $teacher = Teacher::find($request->session()->get("teacherId"));
 
-        //todo get subject id teacher id from session
-
         $quiz = Quiz::create(array(
             'title' => $request->input('title'),
             'subject_id' => $teacher->subject_id,
             'teacher_id' => $teacher->id,
             'duration' => $request->input('duration'),
         ));
-        // $data = request()->validate([
-        //     'title' => 'required',
-        //     'duration' => 'required',
-        // ]);
-
-        // $data = auth()->teacher()->quizzes()->create($data);
-        // dd($data);
-        // dd(Auth::guard('teacher_web')->user()->id);
-        // dd($request->session()->get("teacherId"));
-//        dd(auth()->guard('teacher_web'));
-        // dd(Auth::user()->getId());
-        // dd(Auth::teacher());
 
 
         $questions = json_decode($request->input('questions'), true);
-        // dd($questions);
 
         foreach ($questions as $key => $value) {
             print $value["type"] . "<br>";
@@ -67,8 +52,6 @@ class QuizController extends Controller
                 print $answerValue["isRightAnswer"] . "<br>";
             }
 
-
-            // $question_type_column_name = 'title';
 
             $superQuestion = SuperQuestion::create(array(
                 'quiz_id' => $quiz->id,
@@ -89,7 +72,6 @@ class QuizController extends Controller
                         $right_answer = $answerValue["answerText"];
                     }
 
-                    // $answers .= $answerValue["answerText"];
                 }
 
                 $mq_answer =  MultipleQuestionAnswer::create(array(

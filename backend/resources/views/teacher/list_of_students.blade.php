@@ -33,6 +33,7 @@
             </div>
         </div>
 
+        
         <table class="content-table">
             <thead>
             <tr>
@@ -43,13 +44,15 @@
             </tr>
 
             </thead>
-
+        
+        
+        @foreach($students as $student)
             <tr>
-                <td>Nicole Streisland</td>
-                <td>nicolest@gmail.com</td>
+                <td> {{ $student->first_name }} {{ $student->last_name }} </td>
+                <td>{{ $student->email }}</td>
                 <td>25/30</td>
                 <td>
-                    <a href="/teacher/quiz/1/results/1" class="app-raised-button violet">
+                    <a href="/teacher/quiz/1/results/{ {{ $student->id }} }" class="app-raised-button violet">
                         See
                         <span class="button__icon">
                             <i class="fa fa-chevron-right" aria-hidden="true"></i>
@@ -57,20 +60,8 @@
                     </a>
                 </td>
             </tr>
-
-            <tr>
-                <td>Nicole Streisland</td>
-                <td>nicolest@gmail.com</td>
-                <td>25/30</td>
-                <td>
-                    <a href="/teacher/quiz/1/results/1" class="app-raised-button violet">
-                        See
-                        <span class="button__icon">
-                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                        </span>
-                    </a>
-                </td>
-            </tr>
+        @endforeach
         </table>
+        
     </div>
 @endsection
