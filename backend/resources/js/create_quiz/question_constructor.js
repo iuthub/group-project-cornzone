@@ -133,6 +133,14 @@ const createNewQuestion = (index, type) => {
             false,
             false
         )));
+
+        $(parent).append(createAnswerVariant(new CreateAnswerOptions(
+            false,
+            true,
+            "",
+            false,
+            false
+        )));
     }
 
     return parent;

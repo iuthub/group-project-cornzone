@@ -44,7 +44,7 @@
                     Total: <strong>{{$total}}</strong>
                 </div>
 
-                <a href="/teacher/quiz/1/results" class="results">
+                <a href="/teacher/quiz/{{ $quiz->id }}/results" class="results">
                     See results <i class="fa fa-chevron-right" aria-hidden="true"></i>
                 </a>
             </div>

@@ -37530,6 +37530,7 @@ var createNewQuestion = function createNewQuestion(index, type) {
   if (type === "3") {
     $(parent).append(createAddButton(parent, new CreateAnswerOptions(false, true, "", false, true)));
     $(parent).append(createAnswerVariant(new CreateAnswerOptions(true, false, "", false, false)));
+    $(parent).append(createAnswerVariant(new CreateAnswerOptions(false, true, "", false, false)));
   }
 
   return parent;
@@ -37758,8 +37759,8 @@ module.exports = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\User\IP_labs\group-project-cornzone\backend\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\User\IP_labs\group-project-cornzone\backend\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Development\Projects\Education\group-project-cornzone\backend\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Development\Projects\Education\group-project-cornzone\backend\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
