@@ -12,8 +12,7 @@
 
 ## Installation
 
-The project is written with Laravel. To run you need php version at least 7.2.5 and MySQL database
-Use the package manager. After installing php, MySQL database and [Composer](https://getcomposer.org/) package manager, you need to fill in the .env file according to the provided example and run the commands below.
+The project is written with Laravel. To run you need php version at least 7.2.5 and MySQL database. After installing php, MySQL database and [Composer](https://getcomposer.org/) package manager, you need to fill in the .env file according to the provided example and run the commands below.
 
 ```bash
 # generate laravel app key
@@ -38,6 +37,8 @@ npm install && npm run watch
 ```
 
 ## Note
+
+One of our members - (Yormukhamedova Shakhnoza U1810140) with username noza0727 is not included in the contributions list for some unknown reason. However, she has been contributing and committing her parts of the project. We kindly ask to check the commits separately for the proof and also 'Insights' to see her actions.
 
 The project has been moved from the original [Quizify](https://github.com/JRakhimov/quizify) repository. To track the early stages of development, we recommend looking at the old repository.
 
